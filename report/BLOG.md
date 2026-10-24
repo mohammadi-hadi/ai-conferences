@@ -18,6 +18,12 @@ For each paper I looked up the paper most similar to it. In 2025, 23% of NeurIPS
 
 NeurIPS is much bigger than EMNLP, and both grew, so these shares compare 3,000 papers from each conference, drawn at random 50 times. A simple classifier that guesses the conference from the vector of a paper's title and abstract also finds the task harder now. Its score (AUC, 20 draws) fell from 0.93 to 0.89.
 
+## Where they overlap
+
+I cut the joint map into small patches and coloured each one by which conference its papers come from, correcting for size. In 2025, 25% of all papers sat in patches that both conferences share about equally. In 2026 it was 32%, and still 31% when I shrink 2026 to the size of 2025. The shared ground grew most for agents, where half of the papers now sit in shared patches (up from 27%), and for evaluation and safety (16% to 34%).
+
+![Patches of the joint map that are mostly NeurIPS, shared, or mostly EMNLP, in 2025 and 2026](../outputs/figures/overlap_areas.png)
+
 ## What brought them together
 
 I sorted all the papers into 40 shared topics and measured the common ground: for each topic, the smaller of the two conferences' shares, added up. It went from 40% to 45%.
