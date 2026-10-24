@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where NeurIPS and EMNLP overlap — Hadi Mohammadi</title>
+<meta name="description" content="An interactive map of where NeurIPS and EMNLP papers overlap, in 2025 and 2026.">
+<link rel="canonical" href="https://mohammadi.cv/ai-conferences/2026/overlap.html">
+<meta name="author" content="Hadi Mohammadi">
+<meta property="og:title" content="Where NeurIPS and EMNLP overlap">
+<meta property="og:description" content="An interactive map of where NeurIPS and EMNLP papers overlap, in 2025 and 2026.">
+<meta property="og:url" content="https://mohammadi.cv/ai-conferences/2026/overlap.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Hadi Mohammadi">
+<meta property="og:image" content="https://mohammadi.cv/ai-conferences/2026/figures/overlap_areas.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.png"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaf7;--ink:#1f2a44;--muted:#6b7489;--rule:#e3e6ec;--n:#3b5bdb;--s:#ae3ec9;--e:#d9480f;--card:rgba(255,255,255,.96)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,system-ui,sans-serif;overflow:hidden}
+#app{position:fixed;inset:0}
+#dots,#map{position:absolute;inset:0;width:100%;height:100%}
+#map{touch-action:none}
+.hex{stroke:var(--bg);stroke-width:.8;vector-effect:non-scaling-stroke;cursor:pointer}
+.hex:hover,.hex.sel{stroke:var(--ink);stroke-width:2}
+.lab{font:700 12.5px Inter,system-ui,sans-serif;fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:3.5px;
+  stroke-linejoin:round;text-anchor:middle;pointer-events:none}
+.card{background:var(--card);border-radius:12px;box-shadow:0 2px 14px rgba(31,42,68,.10)}
+#panel{position:absolute;left:14px;top:14px;max-width:min(430px,calc(100vw - 28px));padding:14px 18px 12px}
+#panel h1{font:600 26px/1.15 "Source Serif 4",Georgia,serif;margin:0 0 6px}
+#panel p{margin:0;color:#444;font-size:13.5px}
+#panel .big{display:flex;gap:18px;margin-top:10px;align-items:baseline}
+#panel .big b{font-size:24px;color:var(--s)}
+#panel .big span{font-size:12px;color:var(--muted)}
+#controls{position:absolute;left:14px;bottom:14px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 28px)}
+.row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.row .k{font:600 11px/1 Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:44px}
+.seg{display:inline-flex;background:#eef1f6;border-radius:9px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{all:unset;cursor:pointer;padding:6px 11px;border-radius:7px;font:600 13px/1 Inter,sans-serif;color:var(--ink);white-space:nowrap}
+.seg button[aria-pressed="true"]{background:#1e3a5f;color:#fff}
+.seg button:focus-visible{outline:2px solid var(--e);outline-offset:1px}
+.seg button[disabled]{opacity:.4;cursor:default}
+#legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--ink);align-items:center}
+#legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+#legend .ramp{width:120px;height:10px;border-radius:5px;display:inline-block;vertical-align:-1px;margin:0 6px}
+#info{position:absolute;right:14px;top:14px;width:min(360px,calc(100vw - 28px));max-height:calc(100% - 90px);overflow:auto;padding:14px 16px;display:none}
+#info h2{font:700 14px/1.3 Inter,sans-serif;margin:0 22px 6px 0}
+#info .meta{font-size:12.5px;color:var(--muted);margin-bottom:8px}
+#info .bar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:6px 0 10px;background:#eef1f6}
+#info ul{list-style:none;padding:0;margin:6px 0 0}
+#info li{padding:6px 0;border-top:1px solid var(--rule);font-size:12.5px}
+#info li a{color:var(--ink);text-decoration:none}
+#info li a:hover{text-decoration:underline}
+#info li .c{display:inline-block;font:700 10px/1 Inter;padding:3px 5px;border-radius:4px;color:#fff;margin-right:6px;vertical-align:1px}
+#info .x{position:absolute;top:8px;right:10px;border:0;background:none;font-size:18px;color:var(--muted);cursor:pointer}
+#tip{position:absolute;pointer-events:none;padding:8px 10px;font-size:12.5px;max-width:260px;display:none;z-index:5}
+.links{position:absolute;right:14px;bottom:14px;display:flex;gap:8px}
+.links a{font:600 13px Inter,sans-serif;background:#1e3a5f;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none}
+.links a.ghost{background:#fff;color:#1e3a5f;box-shadow:0 2px 10px rgba(31,42,68,.12)}
+.embedded #panel,.embedded .links .back{display:none}
+.embedded #info{top:10px}
+@media (max-width:760px){
+  #panel{padding:10px 12px;left:10px;top:10px}
+  #panel h1{font-size:19px}
+  #panel p{display:none}
+  #panel .big{margin-top:4px}#panel .big b{font-size:19px}
+  #controls{left:8px;right:8px;bottom:8px;padding:8px}
+  .row .k{width:auto}
+  .seg button{padding:6px 8px;font-size:12px}
+  #info{left:8px;right:8px;width:auto;top:auto;bottom:172px;max-height:46vh;z-index:6}
+  .links{bottom:172px;right:8px}
+  .links a{padding:6px 9px;font-size:12px}
+  .links .back{display:none}
+  .lab{font-size:11px}
+  #tip{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <canvas id="dots"></canvas>
+  <svg id="map" role="img" aria-label="Map of NeurIPS and EMNLP papers cut into hexagons, coloured by which conference they come from"><g id="zoom"><g id="hexes"></g><g id="labels"></g></g></svg>
+  <header id="panel" class="card">
+    <h1>Where NeurIPS and EMNLP overlap</h1>
+    <p>Every NeurIPS and EMNLP paper of 2025 and 2026 on one map, cut into small patches. Each patch is coloured by which conference its papers come from, corrected for size. Hover or tap a patch to see its papers.</p>
+    <div class="big"><div><b id="h25"></b> <span>of papers in shared patches, 2025</span></div><div><b id="h26"></b> <span>in 2026</span></div></div>
+  </header>
+  <div id="controls" class="card">
+    <div class="row"><span class="k">Year</span><div class="seg" id="year"><button data-v="2025">2025</button><button data-v="2026">2026</button></div></div>
+    <div class="row"><span class="k">Show</span><div class="seg" id="view">
+      <button data-v="overlap" title="Mostly NeurIPS, shared or mostly EMNLP">Overlap</button>
+      <button data-v="change" title="Patches that became shared from 2025 to 2026">Change</button>
+      <button data-v="gradient" title="From all NeurIPS to all EMNLP">Gradient</button>
+      <button data-v="density" title="Where the papers are">Density</button>
+      <button data-v="papers" title="Every paper as a dot">Papers</button></div></div>
+    <div class="row" id="densrow" hidden><span class="k">Of</span><div class="seg" id="dens"><button data-v="both">Both</button><button data-v="N">NeurIPS</button><button data-v="E">EMNLP</button></div></div>
+    <div id="legend"></div>
+  </div>
+  <aside id="info" class="card" aria-live="polite"></aside>
+  <div id="tip" class="card"></div>
+  <div class="links"><a class="ghost" href="atlas.html" target="_top">Every paper, by topic →</a><a class="back" href="index.html">← Back to the story</a></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script>
+const DATA = __DATA__;
+const C = {N: "#3b5bdb", S: "#ae3ec9", E: "#d9480f"};
+const NAME = {N: "Mostly NeurIPS", S: "Shared", E: "Mostly EMNLP"};
+const pct = v => (v * 100).toFixed(0) + "%";
+const embedded = window.self !== window.top;
+if (embedded) document.documentElement.classList.add("embedded");
+document.getElementById("h25").textContent = pct(DATA.headline["2025"]);
+document.getElementById("h26").textContent = pct(DATA.headline["2026"]);
+
+const state = {year: "2026", view: "overlap", dens: "both", sel: null};
+const svg = d3.select("#map"), gz = d3.select("#zoom"), gh = d3.select("#hexes"), gl = d3.select("#labels");
+const canvas = document.getElementById("dots"), ctx = canvas.getContext("2d");
+const D = DATA.dots, X0 = D.x0, X1 = D.x1, Y0 = D.y0, Y1 = D.y1;
+let W, H, k, ox, oy, zt = d3.zoomIdentity;
+
+// fit the map into the free part of the screen (leave room for the panel and the controls)
+function fit() {
+  W = innerWidth; H = innerHeight;
+  const phone = W < 760;
+  const top = embedded ? 10 : (phone ? 100 : 20), bottom = phone ? 215 : (embedded ? 110 : 20);
+  const left = phone || embedded ? 10 : Math.min(460, W * .33), right = phone ? 10 : 20;
+  const aw = W - left - right, ah = H - top - bottom;
+  k = Math.min(aw / (X1 - X0), ah / (Y1 - Y0));
+  ox = left + (aw - k * (X1 - X0)) / 2; oy = top + (ah - k * (Y1 - Y0)) / 2;
+  const dpr = devicePixelRatio || 1;
+  canvas.width = W * dpr; canvas.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+const sx = x => ox + (x - X0) * k, sy = y => oy + (Y1 - y) * k;  // y up, as in the figures
+const r = DATA.w / Math.sqrt(3);
+const hexPath = h => {
+  const cx = sx(h.x), cy = sy(h.y), R = r * k;
+  return "M" + d3.range(6).map(i => { const a = Math.PI / 180 * (60 * i + 30); return [cx + R * Math.cos(a), cy + R * Math.sin(a)]; }).join("L") + "Z";
+};
+
+// density scales: share of each conference's papers in a patch
+const tot = y => ({n: DATA.counts.NeurIPS[y], e: DATA.counts.EMNLP[y]});
+function densVal(h, y, which) {
+  const t = tot(y), v = h[y];
+  return which === "N" ? v.n / t.n : which === "E" ? v.e / t.e : (v.n / t.n + v.e / t.e) / 2;
+}
+const densMax = {};
+for (const y of ["2025", "2026"]) for (const w of ["both", "N", "E"])
+  densMax[y + w] = d3.quantile(DATA.hexes.map(h => densVal(h, y, w)).filter(v => v > 0), .97);
+const grad = d3.interpolateRgbBasis([C.N, C.S, C.E]);
+
+function changeCat(h) {
+  const a = h["2025"].c === "S", b = h["2026"].c === "S";
+  return a && b ? "stay" : b ? "new" : a ? "lost" : "no";
+}
+const CH = {new: ["#ae3ec9", "Became shared"], stay: ["#d9a6e5", "Shared both years"], lost: ["#8b93a6", "No longer shared"], no: ["#e6e8ee", "Not shared"]};
+
+function fill(h) {
+  const v = h[state.year], cnt = v.n + v.e;
+  switch (state.view) {
+    case "overlap": return v.c ? C[v.c] : cnt ? "#e6e8ee" : "none";
+    case "gradient": return v.s == null ? (cnt ? "#e6e8ee" : "none") : grad(v.s);
+    case "density": {
+      const d = densVal(h, state.year, state.dens);
+      if (!d) return "none";
+      const base = state.dens === "N" ? C.N : state.dens === "E" ? C.E : "#1f2a44";
+      const c = d3.color(base); c.opacity = Math.max(.08, Math.min(1, Math.sqrt(d / densMax[state.year + state.dens]))); return c + "";
+    }
+    case "change": return h["2025"].n + h["2025"].e + h["2026"].n + h["2026"].e ? CH[changeCat(h)][0] : "none";
+    case "papers": return "rgba(0,0,0,0)";
+  }
+}
+
+function legend() {
+  const L = document.getElementById("legend");
+  const sw = (c, t) => `<span><i style="background:${c}"></i>${t}</span>`;
+  if (state.view === "overlap") L.innerHTML = ["N", "S", "E"].map(c => sw(C[c], NAME[c])).join("") + sw("#e6e8ee", "Too few papers");
+  else if (state.view === "gradient") L.innerHTML = `<span>All NeurIPS<span class="ramp" style="background:linear-gradient(90deg,${C.N},${C.S},${C.E})"></span>All EMNLP</span>`;
+  else if (state.view === "density") L.innerHTML = `<span>Fewer<span class="ramp" style="background:linear-gradient(90deg,rgba(31,42,68,.08),${state.dens === "N" ? C.N : state.dens === "E" ? C.E : "#1f2a44"})"></span>more papers (share of the conference's ${state.year} papers)</span>`;
+  else if (state.view === "change") L.innerHTML = ["new", "stay", "lost", "no"].map(c => sw(CH[c][0], CH[c][1])).join("");
+  else L.innerHTML = sw(C.N, "NeurIPS paper") + sw(C.E, "EMNLP paper");
+}
+
+function drawDots() {
+  ctx.clearRect(0, 0, W, H);
+  if (state.view !== "papers") return;
+  const yr = state.year === "2026" ? 1 : 0, rad = Math.max(1, 1.1 * Math.sqrt(zt.k));
+  for (const c of [0, 1]) {
+    ctx.fillStyle = c ? "rgba(217,72,15,.55)" : "rgba(59,91,219,.5)";
+    ctx.beginPath();
+    for (let i = 0; i < D.x.length; i++) {
+      if (D.yr[i] !== yr || D.c[i] !== c) continue;
+      const x = zt.applyX(sx(X0 + D.x[i] / 9999 * (X1 - X0))), y = zt.applyY(sy(Y0 + D.y[i] / 9999 * (Y1 - Y0)));
+      if (x < -5 || y < -5 || x > W + 5 || y > H + 5) continue;
+      ctx.moveTo(x + rad, y); ctx.arc(x, y, rad, 0, 2 * Math.PI);
+    }
+    ctx.fill();
+  }
+}
+
+let hexSel;
+function render(animate) {
+  fit();
+  hexSel = gh.selectAll("path").data(DATA.hexes, h => h.id).join("path").attr("class", "hex").attr("d", hexPath);
+  (animate ? hexSel.transition().duration(550) : hexSel).attr("fill", fill);
+  gl.selectAll("text").data(DATA.labels).join("text").attr("class", "lab")
+    .attr("x", d => sx(d.x)).attr("y", d => sy(d.y))
+    .style("display", (d, i) => W < 760 && i > 5 ? "none" : null).text(d => d.t)
+    .each(function () {  // keep every label inside the screen
+      const b = this.getBBox(), pad = 6;
+      if (b.x < pad) this.setAttribute("x", +this.getAttribute("x") + pad - b.x);
+      else if (b.x + b.width > W - pad) this.setAttribute("x", +this.getAttribute("x") - (b.x + b.width - W + pad));
+    });
+  hexSel.on("mousemove", (ev, h) => tip(ev, h)).on("mouseleave", () => tipEl.style.display = "none")
+    .on("click", (ev, h) => { ev.stopPropagation(); select(h); });
+  drawDots(); legend();
+  for (const id of ["year", "view", "dens"]) document.querySelectorAll(`#${id} button`).forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.v === state[id])));
+  document.querySelectorAll("#year button").forEach(b => b.disabled = state.view === "change");
+  document.getElementById("densrow").hidden = state.view !== "density";
+  gh.selectAll("path").classed("sel", h => state.sel && h.id === state.sel.id);
+}
+
+const tipEl = document.getElementById("tip");
+function summary(h, y) {
+  const v = h[y], t = tot(y);
+  const label = v.c ? NAME[v.c] : "Too few papers to say";
+  return `<b>${label}</b> in ${y}<br>${v.n} NeurIPS papers (${(100 * v.n / t.n).toFixed(2)}% of NeurIPS) · ${v.e} EMNLP papers (${(100 * v.e / t.e).toFixed(2)}% of EMNLP)`;
+}
+function tip(ev, h) {
+  if (innerWidth < 760) return;
+  const y = state.view === "change" ? "2026" : state.year, v = h[y];
+  let html = summary(h, y);
+  if (state.view === "change") html = `<b>${CH[changeCat(h)][1]}</b><br>` + summary(h, "2025").replace(/<b>.*?<\/b> in /, "") + "<br>" + summary(h, "2026").replace(/<b>.*?<\/b> in /, "");
+  if (v.t.length) html += `<br><span style="color:#6b7489">Topics: ${v.t.join(", ")}</span>`;
+  tipEl.innerHTML = html + `<br><span style="color:#6b7489">Click for papers</span>`;
+  tipEl.style.display = "block";
+  const x = Math.min(ev.clientX + 14, innerWidth - 280), yy = Math.min(ev.clientY + 14, innerHeight - 140);
+  tipEl.style.left = x + "px"; tipEl.style.top = yy + "px";
+}
+const esc = s => s.replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+function select(h) {
+  state.sel = h;
+  const y = state.view === "change" ? "2026" : state.year, v = h[y], info = document.getElementById("info");
+  const t = tot(y), rn = v.n / t.n, re = v.e / t.e, sh = rn + re ? re / (rn + re) : 0;
+  info.innerHTML = `<button class="x" aria-label="close">×</button><h2>${v.t[0] ? esc(v.t[0]) : "This patch"}${v.t[1] ? ", " + esc(v.t[1]) : ""}</h2>
+  <div class="meta">${summary(h, y)}${state.view === "change" ? `<br>2025: ${h["2025"].c ? NAME[h["2025"].c] : "too few papers"}` : ""}</div>
+  <div class="bar" title="NeurIPS vs EMNLP, corrected for size"><div style="width:${100 - 100 * sh}%;background:${C.N}"></div><div style="width:${100 * sh}%;background:${C.E}"></div></div>
+  <div class="meta">Some of its ${y} papers:</div>
+  <ul>${v.p.map(p => `<li><span class="c" style="background:${p[2] === "N" ? C.N : C.E}">${p[2] === "N" ? "NeurIPS" : "EMNLP"}</span><a href="${esc(p[1])}" target="_blank" rel="noopener">${esc(p[0])}</a></li>`).join("") || "<li>No papers in this patch that year.</li>"}</ul>`;
+  info.style.display = "block";
+  info.querySelector(".x").onclick = () => { info.style.display = "none"; state.sel = null; render(false); };
+  tipEl.style.display = "none";
+  render(false);
+}
+
+for (const id of ["year", "view", "dens"]) document.getElementById(id).addEventListener("click", ev => {
+  const b = ev.target.closest("button"); if (!b || b.disabled) return;
+  state[id] = b.dataset.v;
+  if (state.sel) select(state.sel); else render(true);
+});
+svg.on("click", () => { document.getElementById("info").style.display = "none"; state.sel = null; render(false); });
+
+const zoom = d3.zoom().scaleExtent([1, 10]).on("zoom", ev => {
+  zt = ev.transform; gz.attr("transform", zt);
+  gl.selectAll("text").style("font-size", (13 / Math.sqrt(zt.k)) + "px").style("stroke-width", (3.5 / zt.k) + "px");
+  drawDots();
+});
+svg.call(zoom);
+addEventListener("resize", () => render(false));
+render(false);
+</script>
+</body>
+</html>
