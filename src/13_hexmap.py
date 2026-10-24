@@ -3,27 +3,25 @@ several views (overlap, gradient, density, change, papers). The data is exported
 static figure, so the page and the figure always agree; the page itself is src/hexmap_template.html.
 """
 import json
+from urllib.parse import quote_plus
 import numpy as np
 import pandas as pd
 from config import P, OUT, ROOT
+from hexgrid import assign, category, MIN_N
 
-GRID, MIN_N = 34, 4  # same as 12_overlap_areas.py
 df = pd.concat([pd.read_parquet(P / "papers.parquet"), pd.read_parquet(P / "umap.parquet"),
                 pd.read_parquet(P / "topics.parquet")[["topic", "sim"]]], axis=1)
 names = {int(k): v["name"] for k, v in json.load(open(ROOT / "data/labels/topic_names.json")).items()}
 x0, x1, y0, y1 = df.x.min(), df.x.max(), df.y.min(), df.y.max()
-w = (x1 - x0) / GRID
+df["hex"], df["hx"], df["hy"], w = assign(df.x, df.y)
 h = w * np.sqrt(3) / 2
-row = np.round((df.y - y0) / h).astype(int)
-col = np.round((df.x - x0 - (row % 2) * w / 2) / w).astype(int)
-df["hex"] = row * 1000 + col
-df["hx"] = x0 + col * w + (row % 2) * w / 2
-df["hy"] = y0 + row * h
 
-def cat(s):
-    return None if s is None else ("N" if s <= .3 else ("E" if s > .7 else "S"))
+cat = category
 
 tot = df.groupby(["year", "conf"]).size()
+# a few NeurIPS papers share one session link; send those to a search for the title instead
+dup = df["url"].duplicated(keep=False)
+df.loc[dup, "url"] = "https://www.google.com/search?q=" + df.loc[dup, "title"].str.strip().map(quote_plus)
 hexes = []
 for hid, g in df.groupby("hex"):
     rec = {"id": int(hid), "x": round(float(g.hx.iloc[0]), 4), "y": round(float(g.hy.iloc[0]), 4)}
