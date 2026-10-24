@@ -14,7 +14,7 @@ in both years on one map and measures it.
   samples (3,000 papers per conference, 50 draws; 20 for the classifier).
 - The common ground across 40 shared topics went from 40% to 45%. Agent and RL topics gave the biggest gains.
 - Most of the gain is both conferences moving to the same new topics; NeurIPS also moved a little towards EMNLP's 2025 topics.
-- Cutting the joint map into small patches, 25% of papers sat in patches both conferences share about equally in
+- Cutting the joint map into small patches, 23% of papers sat in patches both conferences share about equally in
   2025, and 32% in 2026 (31% at 2025 sizes).
 - At equal conference sizes, the share of authors with a paper at both did not go up.
 
@@ -49,10 +49,13 @@ track `All`.
 | `06_umap.py` | 2D layout of all papers |
 | `07_robustness.py` | 30 and 60 topics, 10 and 50 neighbours, EMNLP main track only |
 | `11_style_checks.py` | titles only, the 2025 to 2026 shift taken out, common ground across years |
+| `hexgrid.py` | the hexagon grid shared by the figure, the interactive map and the cards |
 | `12_overlap_areas.py` | where on the map the two overlap, and each paper's neighbourhood mix (run before `09_map.py`) |
 | `08_figures.py` | story figures |
 | `09_map.py` | interactive map |
 | `13_hexmap.py` | the interactive overlap map (`docs/2026/overlap.html`, from `src/hexmap_template.html`) |
+| `08_figures.py portrait` | 1080 x 1350 versions of three story figures in `outputs/cards/` |
+| `15_cards.py` | the hexagon card `outputs/cards/1_overlap.png`, from `docs/2026/overlap.html` (run after `13_hexmap.py`) |
 | `14_previews.py` | still images of that map, for the story and link previews (needs playwright) |
 | `10_build_site.py` | story page and hub page in `docs/` |
 

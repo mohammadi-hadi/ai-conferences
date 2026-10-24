@@ -20,7 +20,7 @@ NeurIPS is much bigger than EMNLP, and both grew, so these shares compare 3,000 
 
 ## Where they overlap
 
-The map at the top cuts all the papers into small patches and colours each one by which conference its papers come from, correcting for size. You can switch years, see which patches became shared, and tap any patch to see its papers. In 2025, 25% of all papers sat in patches that both conferences share about equally. In 2026 it was 32%, and still 31% when I shrink 2026 to the size of 2025. The shared ground grew most for agents, where half of the papers now sit in shared patches (up from 27%), and for evaluation and safety (16% to 34%).
+The map at the top cuts all the papers into small patches and colours each one by which conference its papers come from, correcting for size. You can switch years, see which patches became shared, and tap any patch to see its papers. In 2025, 23% of all papers sat in patches that both conferences share about equally. In 2026 it was 32%, and still 31% when I shrink 2026 to the size of 2025. The shared ground grew most for LLM agents, where two thirds of the papers now sit in shared patches (up from a third), and for benchmarks and LLM judges (8% to 40%).
 
 ![Patches of the joint map that are mostly NeurIPS, shared, or mostly EMNLP, in 2025 and 2026](../outputs/figures/overlap_areas.png)
 
@@ -32,7 +32,7 @@ I sorted all the papers into 40 shared topics and measured the common ground: fo
 
 The biggest gains came from agents and from reinforcement learning for language models. They make up about half of all the topic gains, and nearly all of the net rise once shrinking topics such as chain-of-thought reasoning are subtracted. LLM agents went from 2.0% to 4.6% of NeurIPS papers and from 4.2% to 9.0% of EMNLP papers. RL for LLM reasoning went from 1.3% to 2.7% at NeurIPS and from 0.9% to 3.2% at EMNLP. Agent memory, close to nothing at either conference in 2025, now has 0.8% of NeurIPS and 2.2% of EMNLP.
 
-Most of the gain is both conferences moving to the same new topics in the same year. NeurIPS also moved a little towards EMNLP's 2025 topics: its common ground with EMNLP 2025 went from 40% to 42%. EMNLP did not move towards NeurIPS 2025.
+Most of the gain is both conferences moving to the same new topics in the same year. NeurIPS also moved a little towards EMNLP's 2025 topics: its common ground with EMNLP 2025 went from 40% to 42%. EMNLP barely moved towards NeurIPS 2025.
 
 ## What still sets them apart
 
