@@ -1,0 +1,50 @@
+{
+ "titles_only_auc": {
+  "2025": {
+   "mean": 0.8636,
+   "lo": 0.859,
+   "hi": 0.8683
+  },
+  "2026": {
+   "mean": 0.8222,
+   "lo": 0.8132,
+   "hi": 0.8317
+  }
+ },
+ "year_removed_closest": {
+  "2025": {
+   "neurips_closest_at_emnlp": {
+    "mean": 0.2288,
+    "lo": 0.219,
+    "hi": 0.2373
+   },
+   "emnlp_closest_at_neurips": {
+    "mean": 0.2119,
+    "lo": 0.1988,
+    "hi": 0.2247
+   }
+  },
+  "2026": {
+   "neurips_closest_at_emnlp": {
+    "mean": 0.2919,
+    "lo": 0.2746,
+    "hi": 0.3046
+   },
+   "emnlp_closest_at_neurips": {
+    "mean": 0.2488,
+    "lo": 0.2341,
+    "hi": 0.271
+   }
+  }
+ },
+ "year_removed_common_ground": {
+  "2025": 0.3946,
+  "2026": 0.4578
+ },
+ "common_ground_cross_year": {
+  "NeurIPS 2025 vs EMNLP 2025": 0.3971,
+  "NeurIPS 2025 vs EMNLP 2026": 0.4016,
+  "NeurIPS 2026 vs EMNLP 2025": 0.4196,
+  "NeurIPS 2026 vs EMNLP 2026": 0.4538
+ }
+}
