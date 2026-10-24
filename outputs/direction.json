@@ -1,0 +1,75 @@
+{
+ "papers_per_side": 3000,
+ "k": 20,
+ "draws": 50,
+ "pairs": {
+  "NeurIPS 2025 vs EMNLP 2025": {
+   "mixing": {
+    "mean": 0.5145,
+    "lo": 0.5001,
+    "hi": 0.5219
+   },
+   "neurips_closest_at_emnlp": {
+    "mean": 0.2275,
+    "lo": 0.2174,
+    "hi": 0.2377
+   },
+   "emnlp_closest_at_neurips": {
+    "mean": 0.2158,
+    "lo": 0.2008,
+    "hi": 0.2273
+   }
+  },
+  "NeurIPS 2025 vs EMNLP 2026": {
+   "mixing": {
+    "mean": 0.5053,
+    "lo": 0.4901,
+    "hi": 0.5148
+   },
+   "neurips_closest_at_emnlp": {
+    "mean": 0.2118,
+    "lo": 0.2035,
+    "hi": 0.222
+   },
+   "emnlp_closest_at_neurips": {
+    "mean": 0.2054,
+    "lo": 0.192,
+    "hi": 0.2169
+   }
+  },
+  "NeurIPS 2026 vs EMNLP 2025": {
+   "mixing": {
+    "mean": 0.4722,
+    "lo": 0.4599,
+    "hi": 0.4845
+   },
+   "neurips_closest_at_emnlp": {
+    "mean": 0.2208,
+    "lo": 0.2092,
+    "hi": 0.2287
+   },
+   "emnlp_closest_at_neurips": {
+    "mean": 0.1631,
+    "lo": 0.1502,
+    "hi": 0.1777
+   }
+  },
+  "NeurIPS 2026 vs EMNLP 2026": {
+   "mixing": {
+    "mean": 0.6072,
+    "lo": 0.5936,
+    "hi": 0.6234
+   },
+   "neurips_closest_at_emnlp": {
+    "mean": 0.2902,
+    "lo": 0.2766,
+    "hi": 0.3068
+   },
+   "emnlp_closest_at_neurips": {
+    "mean": 0.2467,
+    "lo": 0.2313,
+    "hi": 0.2598
+   }
+  }
+ }
+}
