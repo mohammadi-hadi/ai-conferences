@@ -19,11 +19,11 @@ from matplotlib.patches import Patch
 from matplotlib.collections import PolyCollection
 plt.rcParams.update({"font.family": ["Helvetica Neue", "Arial", "DejaVu Sans"], "font.size": 12.5})
 from config import P, OUT, FIG
+from hexgrid import assign, MIN_N
 
 INK, MUTED, BG, GREY = "#1f2a44", "#6b7489", "#fbfaf7", "#b8bfcc"
 CAT = {"Mostly NeurIPS": "#3b5bdb", "Shared": "#ae3ec9", "Mostly EMNLP": "#d9480f"}
 SOURCE = "Data: NeurIPS and ACL Anthology paper lists · Analysis: Hadi Mohammadi · github.com/mohammadi-hadi/ai-conferences"
-GRID, MIN_N = 34, 4
 
 df = pd.concat([pd.read_parquet(P / "papers.parquet"), pd.read_parquet(P / "umap.parquet"),
                 pd.read_parquet(P / "topics.parquet")[["topic"]]], axis=1)
@@ -31,13 +31,8 @@ emb = np.load(P / "embeddings.npy")
 
 # hexagon id for every paper (one grid for both years, so the areas line up)
 x0, x1, y0, y1 = df.x.min(), df.x.max(), df.y.min(), df.y.max()
-w = (x1 - x0) / GRID
+df["hex"], df["hx"], df["hy"], w = assign(df.x, df.y)
 h = w * np.sqrt(3) / 2
-row = np.round((df.y - y0) / h).astype(int)
-col = np.round((df.x - x0 - (row % 2) * w / 2) / w).astype(int)
-df["hex"] = row * 1000 + col
-df["hx"] = x0 + col * w + (row % 2) * w / 2
-df["hy"] = y0 + row * h
 
 out = {}
 cells = {}
@@ -56,6 +51,20 @@ for y in (2025, 2026):
     # size-corrected: share of each conference's papers in shared cells
     for conf in ("NeurIPS", "EMNLP"):
         out[str(y)][f"{conf}_papers_in_shared"] = round(float((lab[d.conf == conf] == "Shared").mean()), 4)
+# share of each topic's papers that sit in shared hexagons (used in the story and the posts)
+names_all = json.load(open(P.parent / "labels/topic_names.json"))
+for y in (2025, 2026):
+    d = df[df.year == y]
+    tot_ = d.groupby("conf").size()
+    c = d.groupby(["hex", "conf"]).size().unstack(fill_value=0)
+    c = c[c.sum(1) >= MIN_N]
+    sh = (c["EMNLP"] / tot_["EMNLP"]) / (c["NeurIPS"] / tot_["NeurIPS"] + c["EMNLP"] / tot_["EMNLP"])
+    shared = d["hex"].map((sh > .3) & (sh <= .7)).fillna(False).astype(bool)
+    for t, v in shared.groupby(d["topic"]).mean().items():
+        out.setdefault("shared_by_topic", {}).setdefault(names_all[str(t)]["name"], {})[str(y)] = round(float(v), 4)
+    for a_, v in shared.groupby(d["topic"].map(lambda t: names_all[str(t)]["area"])).mean().items():
+        out.setdefault("shared_by_area", {}).setdefault(a_, {})[str(y)] = round(float(v), 4)
+
 # fair check: fewer papers per hexagon makes shares noisier and pushes cells to the extremes, so 2026 is also
 # measured on random subsets the size of 2025 (5,856 NeurIPS and 3,484 EMNLP papers, 20 draws)
 def shared_share(d):

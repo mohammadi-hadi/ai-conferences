@@ -1,23 +1,227 @@
 {
  "2025": {
-  "Mostly NeurIPS": 0.4099,
-  "Shared": 0.2504,
-  "Mostly EMNLP": 0.3097,
-  "papers_in_small_cells": 0.03,
-  "NeurIPS_papers_in_shared": 0.2398,
-  "EMNLP_papers_in_shared": 0.2684
+  "Mostly NeurIPS": 0.4143,
+  "Shared": 0.2348,
+  "Mostly EMNLP": 0.3195,
+  "papers_in_small_cells": 0.0314,
+  "NeurIPS_papers_in_shared": 0.2256,
+  "EMNLP_papers_in_shared": 0.2503
  },
  "2026": {
-  "Mostly NeurIPS": 0.3724,
-  "Shared": 0.3204,
-  "Mostly EMNLP": 0.2911,
-  "papers_in_small_cells": 0.016,
-  "NeurIPS_papers_in_shared": 0.2926,
-  "EMNLP_papers_in_shared": 0.3661
+  "Mostly NeurIPS": 0.3769,
+  "Shared": 0.321,
+  "Mostly EMNLP": 0.285,
+  "papers_in_small_cells": 0.0172,
+  "NeurIPS_papers_in_shared": 0.2888,
+  "EMNLP_papers_in_shared": 0.3739
+ },
+ "shared_by_topic": {
+  "Bandits and Online Learning": {
+   "2025": 0.0143,
+   "2026": 0.0295
+  },
+  "AI Text Detection and Watermarking": {
+   "2025": 0.2816,
+   "2026": 0.3564
+  },
+  "LLM Tuning, Editing and Unlearning": {
+   "2025": 0.4075,
+   "2026": 0.59
+  },
+  "Causal and Conformal Inference": {
+   "2025": 0.0096,
+   "2026": 0.1217
+  },
+  "Vision-Language Models": {
+   "2025": 0.6336,
+   "2026": 0.6089
+  },
+  "Multimodal and Omni-Modal LLMs": {
+   "2025": 0.3992,
+   "2026": 0.4164
+  },
+  "Transformers and Attention": {
+   "2025": 0.4726,
+   "2026": 0.3885
+  },
+  "Deep Reinforcement Learning": {
+   "2025": 0.0219,
+   "2026": 0.0863
+  },
+  "Multilingual NLP and Translation": {
+   "2025": 0.0232,
+   "2026": 0.0709
+  },
+  "Information Extraction and Documents": {
+   "2025": 0.0476,
+   "2026": 0.1344
+  },
+  "Code Generation and Coding Agents": {
+   "2025": 0.5,
+   "2026": 0.462
+  },
+  "Robotics and Embodied AI": {
+   "2025": 0.1591,
+   "2026": 0.2362
+  },
+  "Neural PDE Solvers": {
+   "2025": 0.0452,
+   "2026": 0.017
+  },
+  "Video Understanding": {
+   "2025": 0.3308,
+   "2026": 0.4816
+  },
+  "3D Reconstruction": {
+   "2025": 0.0,
+   "2026": 0.0305
+  },
+  "Diffusion Language Models": {
+   "2025": 0.5517,
+   "2026": 0.8405
+  },
+  "Personalisation and Recommendation": {
+   "2025": 0.5986,
+   "2026": 0.4874
+  },
+  "Retrieval-Augmented Generation": {
+   "2025": 0.0219,
+   "2026": 0.0428
+  },
+  "LLM Agents": {
+   "2025": 0.3257,
+   "2026": 0.6619
+  },
+  "Chain-of-Thought Reasoning": {
+   "2025": 0.4163,
+   "2026": 0.5142
+  },
+  "Agent Memory": {
+   "2025": 0.4,
+   "2026": 0.3553
+  },
+  "Diffusion and Flow Models": {
+   "2025": 0.0215,
+   "2026": 0.0186
+  },
+  "KV Cache and Long Context": {
+   "2025": 0.8372,
+   "2026": 0.8125
+  },
+  "Deep Learning Optimisation Theory": {
+   "2025": 0.0649,
+   "2026": 0.02
+  },
+  "Graph Learning": {
+   "2025": 0.1389,
+   "2026": 0.1127
+  },
+  "Speech and Audio Models": {
+   "2025": 0.2289,
+   "2026": 0.3581
+  },
+  "LLM Bias and Reliability": {
+   "2025": 0.0744,
+   "2026": 0.2758
+  },
+  "Computational Neuroscience": {
+   "2025": 0.0503,
+   "2026": 0.0375
+  },
+  "Text-to-Image Generation": {
+   "2025": 0.3102,
+   "2026": 0.1242
+  },
+  "Statistical Learning and Privacy": {
+   "2025": 0.0114,
+   "2026": 0.023
+  },
+  "Domain Adaptation and Robustness": {
+   "2025": 0.1277,
+   "2026": 0.1775
+  },
+  "RL for LLM Reasoning": {
+   "2025": 0.4771,
+   "2026": 0.6817
+  },
+  "Federated Learning": {
+   "2025": 0.1889,
+   "2026": 0.101
+  },
+  "Molecules and Proteins": {
+   "2025": 0.3125,
+   "2026": 0.1895
+  },
+  "Time Series Forecasting": {
+   "2025": 0.1958,
+   "2026": 0.1394
+  },
+  "Medical and Clinical AI": {
+   "2025": 0.0284,
+   "2026": 0.2345
+  },
+  "Benchmarks and LLM Judges": {
+   "2025": 0.0781,
+   "2026": 0.4
+  },
+  "Jailbreaks and LLM Safety": {
+   "2025": 0.4398,
+   "2026": 0.3976
+  },
+  "LLM Compression and Efficient Tuning": {
+   "2025": 0.8737,
+   "2026": 0.7821
+  },
+  "Image Recognition and Segmentation": {
+   "2025": 0.0389,
+   "2026": 0.1412
+  }
+ },
+ "shared_by_area": {
+  "Agents": {
+   "2025": 0.2555,
+   "2026": 0.5032
+  },
+  "Efficiency & Architectures": {
+   "2025": 0.7143,
+   "2026": 0.632
+  },
+  "Evaluation & Safety": {
+   "2025": 0.1812,
+   "2026": 0.35
+  },
+  "Generative Models": {
+   "2025": 0.2505,
+   "2026": 0.2764
+  },
+  "Language & Society": {
+   "2025": 0.1324,
+   "2026": 0.1909
+  },
+  "Multimodal & Vision": {
+   "2025": 0.2695,
+   "2026": 0.3526
+  },
+  "Other ML": {
+   "2025": 0.2525,
+   "2026": 0.3217
+  },
+  "Reasoning & RL": {
+   "2025": 0.2277,
+   "2026": 0.346
+  },
+  "Science & Applications": {
+   "2025": 0.1852,
+   "2026": 0.193
+  },
+  "Theory & Optimisation": {
+   "2025": 0.0252,
+   "2026": 0.0477
+  }
  },
  "2026_at_2025_size_shared": {
-  "mean": 0.3098,
-  "lo": 0.2919,
-  "hi": 0.3247
+  "mean": 0.3052,
+  "lo": 0.2836,
+  "hi": 0.3217
  }
 }
