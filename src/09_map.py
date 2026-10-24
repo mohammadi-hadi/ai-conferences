@@ -25,10 +25,8 @@ extra = pd.DataFrame({
     "abstract": df["abstract"].str.slice(0, 380) + "…",
 })
 hover = (title + " — " + df["conf"] + " " + df["year"].astype(str)).to_numpy()
-cmap_raw = [group, df["conf"].to_numpy(), df["year"].astype(str).to_numpy(), area]
+cmap_raw = [df["conf"].to_numpy(), df["year"].astype(str).to_numpy(), area]
 cmap_meta = [
-    {"field": "confyear", "description": "Conference and year", "kind": "categorical",
-     "color_mapping": {f"{c}-{y}": v for (c, y), v in COL.items()}},
     {"field": "conference", "description": "Conference", "kind": "categorical",
      "color_mapping": {"NeurIPS": "#3b5bdb", "EMNLP": "#d9480f"}},
     {"field": "year", "description": "Year", "kind": "categorical", "color_mapping": {"2025": "#adb5bd", "2026": "#1e3a5f"}},
@@ -53,7 +51,19 @@ CSS = """
 .atlas-back{position:absolute;bottom:14px;right:14px;z-index:10;font:600 13px Inter,system-ui,sans-serif;background:#1e3a5f;
   color:#fff;padding:7px 12px;border-radius:8px;text-decoration:none}
 .embedded #title-container,.embedded .atlas-back,.embedded #topic-tree{display:none!important}
-@media (max-width:768px){#paper-links{left:10px;right:10px;width:auto;bottom:70px}#main-title{font-size:22px!important}}
+@media (max-width:768px){
+  #main-title{font-size:21px!important;margin-bottom:4px}
+  #title-container{padding:10px 12px!important}
+  #title-container>span:not(#main-title){font-size:12.5px!important;line-height:1.4!important}
+  .stack.top-left{max-height:44vh!important}
+  #topic-tree{display:none!important}
+  .stack.bottom-left{display:flex!important}  /* keep the colour menu on phones */
+  #colormap-selector-container{max-width:calc(100vw - 32px)!important;box-sizing:border-box}
+  #colormap-selector-container .color-map-dropdown,#colormap-selector-container .color-map-selected{max-width:100%!important}
+  .atlas-back{bottom:88px;right:12px;padding:7px 11px;font-size:12px}
+  body:has(.color-map-options[style*="block"]) .atlas-back{visibility:hidden}
+  #paper-links{left:12px;right:12px;width:auto;bottom:132px}
+}
 """
 plot = datamapplot.create_interactive_plot(
     df[["x", "y"]].to_numpy(), topic, area,
@@ -114,5 +124,8 @@ page = page.replace("<head>", "<head>\n" + head)
 old = re.search(r"<title>(.*?)</title>", page, re.S)
 t = "<title>NeurIPS and EMNLP on one map — Hadi Mohammadi</title>"
 page = page.replace(old.group(0), t) if old else page.replace("</head>", t + "</head>")
+# the default colouring is ours (conference and year), but DataMapPlot calls it "Clusters"
+assert page.count('"Clusters"') >= 1, "label to rename not found"
+page = page.replace('"Clusters"', '"Conference and year"')
 (DOCS / "atlas.html").write_text(page)
 print("saved", DOCS / "atlas.html", len(df))
