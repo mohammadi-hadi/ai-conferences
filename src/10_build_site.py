@@ -10,13 +10,14 @@ DOCS = ROOT / "docs/2026"
 for f in (OUT / "figures").glob("*.png"):
     shutil.copy(f, DOCS / "figures" / f.name)
 
-HERO = ('</div><section class="container atlas-hero" aria-label="map of both conferences">'
-        '<div class="map-frame"><img class="map-preview" src="figures/map_years.png" '
-        'alt="NeurIPS and EMNLP papers of 2025 and 2026 on one map">'
+HERO = ('</div><section class="container atlas-hero" aria-label="where the two conferences overlap">'
+        '<div class="map-frame"><img class="map-preview" src="figures/overlap_preview.png" '
+        'alt="Map of NeurIPS and EMNLP papers cut into hexagons: mostly NeurIPS, shared, or mostly EMNLP">'
         '<button class="map-cover" type="button" onclick="openMap(this)"><span>Explore the map</span></button></div>'
-        '<div class="actions"><a class="btn" href="atlas.html">Open the map full screen</a></div></section>'
-        '<script>function openMap(b){if(window.innerWidth<900){location.href="atlas.html";return;}'
-        'b.parentNode.innerHTML=\'<iframe src="atlas.html" title="NeurIPS and EMNLP on one map"></iframe>\';}</script>'
+        '<div class="actions"><a class="btn" href="overlap.html">Open the map full screen</a>'
+        '<a class="btn btn-ghost" href="atlas.html">Every paper, by topic</a></div></section>'
+        '<script>function openMap(b){if(window.innerWidth<900){location.href="overlap.html";return;}'
+        'b.parentNode.innerHTML=\'<iframe src="overlap.html" title="Where NeurIPS and EMNLP overlap"></iframe>\';}</script>'
         '<div class="post-wrap">')
 
 
@@ -54,7 +55,7 @@ body = f"""{atlas_nav("", "index.html")}<main id="main"><article class="post">
 <p class="post-crumbs">{CRUMBS}</p><h1>{title}</h1><p class="post-dek">{meta.get("dek", "")}</p>
 <p class="post-byline"><span>{round(words / 220)} min read · {meta.get("date", "")}</span></p></div></header>
 <div class="post-body"><div class="post-wrap">{body}</div></div></article></main>"""
-(DOCS / "index.html").write_text(page(title, meta.get("dek", ""), SITE, body, image=f"{SITE}figures/map_years.png"))
+(DOCS / "index.html").write_text(page(title, meta.get("dek", ""), SITE, body, image=f"{SITE}figures/overlap_card.png"))
 print("wrote", DOCS / "index.html")
 
 root = DOCS.parent
@@ -65,9 +66,9 @@ LANDING = f"""{atlas_nav("2026/")}<main id="main"><section class="hero"><div cla
 <p class="section-lede">Open maps of NeurIPS and EMNLP papers, made the same way each time, so they can be compared.</p>
 </div></section>
 <section class="section"><div class="container">
-<a href="2026/atlas.html"><img src="2026/figures/map_years.png" alt="NeurIPS and EMNLP papers of 2025 and 2026 on one map"
+<a href="2026/overlap.html"><img src="2026/figures/overlap_preview.png" alt="Where NeurIPS and EMNLP papers overlap"
  class="landing-map"></a>
-<div class="landing-actions"><a class="btn" href="2026/atlas.html">Open the joint map</a>
+<div class="landing-actions"><a class="btn" href="2026/overlap.html">Open the overlap map</a>
 <a class="btn btn-ghost" href="2026/">Read the comparison</a></div>
 <div class="prose" style="margin-top:28px">
 <h2>2026</h2>
@@ -80,5 +81,5 @@ and time of every talk and poster.</p>
 </div></div></section></main>"""
 (root / "index.html").write_text(page("AI Conferences", "Open maps of NeurIPS and EMNLP papers, made the same way each time.",
                                       "https://mohammadi.cv/ai-conferences/", LANDING,
-                                      image=f"{SITE}figures/map_years.png", kind="website"))
+                                      image=f"{SITE}figures/overlap_card.png", kind="website"))
 print("wrote", root / "index.html")

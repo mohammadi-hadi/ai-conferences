@@ -8,7 +8,7 @@ NeurIPS is one of the largest machine learning conferences. EMNLP is one of the 
 They moved closer. They are still far from the same.
 
 <!-- atlas-hero -->
-**[Open the map of both conferences →](https://mohammadi.cv/ai-conferences/2026/atlas.html)**
+**[Open the map of where they overlap →](https://mohammadi.cv/ai-conferences/2026/overlap.html)**
 
 ## Closer than a year ago
 
@@ -20,7 +20,7 @@ NeurIPS is much bigger than EMNLP, and both grew, so these shares compare 3,000 
 
 ## Where they overlap
 
-I cut the joint map into small patches and coloured each one by which conference its papers come from, correcting for size. In 2025, 25% of all papers sat in patches that both conferences share about equally. In 2026 it was 32%, and still 31% when I shrink 2026 to the size of 2025. The shared ground grew most for agents, where half of the papers now sit in shared patches (up from 27%), and for evaluation and safety (16% to 34%).
+The map at the top cuts all the papers into small patches and colours each one by which conference its papers come from, correcting for size. You can switch years, see which patches became shared, and tap any patch to see its papers. In 2025, 25% of all papers sat in patches that both conferences share about equally. In 2026 it was 32%, and still 31% when I shrink 2026 to the size of 2025. The shared ground grew most for agents, where half of the papers now sit in shared patches (up from 27%), and for evaluation and safety (16% to 34%).
 
 ![Patches of the joint map that are mostly NeurIPS, shared, or mostly EMNLP, in 2025 and 2026](../outputs/figures/overlap_areas.png)
 
@@ -52,6 +52,6 @@ The result held every way I checked it. With 30 or 60 topics instead of 40, or w
 
 ## Explore
 
-[The joint map](https://mohammadi.cv/ai-conferences/2026/atlas.html) · [NeurIPS 2026 atlas](https://mohammadi.cv/neurips/2026/) · [EMNLP 2026 atlas](https://mohammadi.cv/emnlp/2026/) · [Code&nbsp;and&nbsp;data](https://github.com/mohammadi-hadi/ai-conferences)
+[Where they overlap](https://mohammadi.cv/ai-conferences/2026/overlap.html) · [Every paper, by topic](https://mohammadi.cv/ai-conferences/2026/atlas.html) · [NeurIPS 2026 atlas](https://mohammadi.cv/neurips/2026/) · [EMNLP 2026 atlas](https://mohammadi.cv/emnlp/2026/) · [Code&nbsp;and&nbsp;data](https://github.com/mohammadi-hadi/ai-conferences)
 
 Hadi Mohammadi · [mohammadi.cv](https://mohammadi.cv)

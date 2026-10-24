@@ -81,8 +81,8 @@ def atlas_nav(prefix="", current=""):
     """Project menu shown under the site header. prefix='' inside /ai-conferences/2026/, '2026/' on the landing page."""
     nav = (f'<nav class="atlas-nav" aria-label="AI Conferences"><div class="container">'
             f'<a class="name" href="{"../" if not prefix else ""}">AI Conferences</a>'
-            f'<a class="map" href="{prefix}atlas.html">Open the map</a>'
-            f'<a href="{prefix}index.html">NeurIPS vs EMNLP</a>'
+            f'<a class="map" href="{prefix}overlap.html">Open the map</a>'
+            f'<a href="{prefix}index.html">NeurIPS vs EMNLP</a><a href="{prefix}atlas.html">Every paper</a>'
             f'<a href="/neurips/2026/">NeurIPS 2026</a><a href="/emnlp/2026/">EMNLP 2026</a>'
             f'<a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data</a></div></nav>')
     # the page you are on is marked, like the Blog item in the site menu
@@ -96,7 +96,7 @@ FOOTER = """<footer class="site-footer"><div class="container">
 
 
 def page(title, description, url, body, image=None, extra_head="", kind="article"):
-    img = image or f"{ATLAS_ROOT}2026/figures/map_years.png"
+    img = image or f"{ATLAS_ROOT}2026/figures/overlap_card.png"
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light">
 <title>{title} — Hadi Mohammadi</title><meta name="description" content="{description}">

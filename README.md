@@ -5,6 +5,8 @@ in both years on one map and measures it.
 
 **Read the story and open the map:** https://mohammadi.cv/ai-conferences/2026/
 
+**Where the two overlap, interactive:** https://mohammadi.cv/ai-conferences/2026/overlap.html
+
 ## Main results
 
 - In 2025, 23% of NeurIPS papers had their closest paper at EMNLP. In 2026 it is 29%. For EMNLP papers with their
@@ -50,6 +52,8 @@ track `All`.
 | `12_overlap_areas.py` | where on the map the two overlap, and each paper's neighbourhood mix (run before `09_map.py`) |
 | `08_figures.py` | story figures |
 | `09_map.py` | interactive map |
+| `13_hexmap.py` | the interactive overlap map (`docs/2026/overlap.html`, from `src/hexmap_template.html`) |
+| `14_previews.py` | still images of that map, for the story and link previews (needs playwright) |
 | `10_build_site.py` | story page and hub page in `docs/` |
 
 Topic names are in `data/labels/topic_names.json`. Every number in the story is in `outputs/`.
