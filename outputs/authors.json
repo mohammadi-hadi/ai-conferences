@@ -1,0 +1,42 @@
+{
+ "2025": {
+  "authors_neurips": 23687,
+  "authors_emnlp": 13997,
+  "authors_both": 3564,
+  "share_emnlp_authors_also_neurips": 0.2546,
+  "share_neurips_authors_also_emnlp": 0.1505,
+  "share_emnlp_papers_with_neurips_author": 0.6811,
+  "share_neurips_papers_with_emnlp_author": 0.5502
+ },
+ "2026": {
+  "authors_neurips": 33960,
+  "authors_emnlp": 21895,
+  "authors_both": 6091,
+  "share_emnlp_authors_also_neurips": 0.2782,
+  "share_neurips_authors_also_emnlp": 0.1794,
+  "share_emnlp_papers_with_neurips_author": 0.762,
+  "share_neurips_papers_with_emnlp_author": 0.5764
+ },
+ "2026_at_2025_size": {
+  "share_emnlp_authors_also_neurips": {
+   "mean": 0.235,
+   "lo": 0.2296,
+   "hi": 0.241
+  },
+  "share_neurips_authors_also_emnlp": {
+   "mean": 0.15,
+   "lo": 0.1466,
+   "hi": 0.1538
+  },
+  "share_emnlp_papers_with_neurips_author": {
+   "mean": 0.7014,
+   "lo": 0.6908,
+   "hi": 0.7137
+  },
+  "share_neurips_papers_with_emnlp_author": {
+   "mean": 0.5162,
+   "lo": 0.5084,
+   "hi": 0.5248
+  }
+ }
+}
