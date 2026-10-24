@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light">
+<title>AI Conferences — Hadi Mohammadi</title><meta name="description" content="Open maps of the papers at the big AI conferences, made the same way each time.">
+<link rel="canonical" href="https://mohammadi.cv/ai-conferences/"><meta name="author" content="Hadi Mohammadi">
+<meta property="og:title" content="AI Conferences"><meta property="og:description" content="Open maps of the papers at the big AI conferences, made the same way each time.">
+<meta property="og:url" content="https://mohammadi.cv/ai-conferences/"><meta property="og:type" content="website"><meta property="og:site_name" content="Hadi Mohammadi">
+<meta property="og:image" content="https://mohammadi.cv/ai-conferences/2026/figures/map_years.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/css/site.css"><link rel="icon" href="/assets/img/favicon.png"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><style>
+html,body{overflow-x:hidden}
+.atlas-nav{border-bottom:1px solid var(--rule);background:var(--surface)}
+.atlas-nav .container{display:flex;gap:6px 18px;flex-wrap:wrap;align-items:center;padding-top:10px;padding-bottom:10px;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.02em}
+.atlas-nav a{color:var(--ink-2);text-decoration:none}.atlas-nav a:hover{color:var(--accent)}
+.atlas-nav .name{font-weight:500;color:var(--ink)}
+.atlas-nav a.map{background:var(--accent);color:#fff;padding:4px 10px;border-radius:6px}
+.atlas-nav a.map:hover{background:var(--accent-hover);color:#fff}
+.atlas-hero{margin:8px auto 36px}
+.atlas-hero iframe{width:100%;height:min(78vh,760px);border:1px solid var(--rule);border-radius:10px;background:#fff;display:block;
+  box-shadow:0 2px 18px rgba(30,58,95,.08)}
+.map-frame{position:relative}
+.map-preview{width:100%;height:min(78vh,760px);object-fit:contain;background:#fbfaf7;border:1px solid var(--rule);border-radius:10px;display:block}
+@media (max-width:720px){.map-preview{height:auto}}
+.map-cover{position:absolute;inset:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px}
+.map-cover span{font-family:var(--sans);font-size:.9rem;font-weight:500;background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.map-cover:hover span{background:var(--accent-hover)}
+.atlas-hero .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.post-body figure{margin:32px 0 32px 50%;width:min(1000px,calc(100vw - 32px));transform:translateX(-50%)}
+.post-body figure img{display:block;width:auto;max-width:100%;height:auto;max-height:min(85vh,860px);margin:0 auto;border:1px solid var(--rule);border-radius:8px;background:#fff}
+.post-body figcaption{text-align:center}
+.post-body iframe.chart{width:min(1000px,calc(100vw - 32px))!important;margin-left:50%!important;transform:translateX(-50%)}
+.post-body figcaption{font-size:var(--step--1);color:var(--ink-3);margin-top:6px}
+.post-body iframe.chart{width:100%;border:1px solid var(--rule);border-radius:8px;background:#fff;margin:0 0 28px}
+.post-body table{width:100%;border-collapse:collapse;font-size:var(--step--1);margin:0 0 24px}
+@media (max-width:560px){.post-wrap:not(.wide) table{table-layout:fixed;min-width:0}.post-wrap:not(.wide) th,.post-wrap:not(.wide) td{overflow-wrap:anywhere;padding:6px 4px}}
+.post-body th,.post-body td{border-bottom:1px solid var(--rule);padding:6px 8px;text-align:left;vertical-align:top}
+.post-body .note{font-size:var(--step--1);color:var(--ink-3)}
+.wide{max-width:1080px}
+.atlas-nav a[aria-current]{color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.post-body .btn,.atlas-hero .btn{text-decoration:none}
+.map-preview{padding-bottom:58px;box-sizing:border-box}
+@media (max-width:720px){.map-preview{padding-bottom:0}.map-cover span{display:none}}
+.landing-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.post-body figcaption .tap{display:none}
+@media (max-width:640px){.post-body figcaption .tap{display:inline}}
+.post-body .links{white-space:nowrap}
+.post-body table + h3{margin-top:28px}
+.landing-map{width:100%;height:min(70vh,680px);object-fit:contain;border:1px solid var(--rule);border-radius:10px;background:#fbfaf7;display:block}
+@media (max-width:720px){.landing-map{height:auto}}
+@media (max-width:640px){.post-wrap.wide table,.post-wrap.wide tbody,.post-wrap.wide tr,.post-wrap.wide td{display:block;width:auto;min-width:0}
+.post-wrap.wide thead{display:none}.post-wrap.wide tr{padding:12px 0;border-bottom:1px solid var(--rule)}
+.post-wrap.wide td{border:0;padding:2px 0}.post-wrap.wide td:first-child{font-weight:600}
+.post-wrap.wide td[data-label]{display:inline-block;margin:4px 14px 0 0;font-family:var(--mono);font-size:.78rem;color:var(--ink-3)}
+.post-wrap.wide td[data-label]::before{content:attr(data-label) ": "}}
+/* desktop: the same column widths in every table, numbers on one line */
+@media (min-width:641px){.post-wrap.wide table{table-layout:fixed}.post-wrap.wide th:nth-child(1){width:19%}.post-wrap.wide th:nth-child(3){width:4.5em}.post-wrap.wide th:nth-child(4){width:9.5em}.post-wrap.wide th:nth-child(5){width:7.5em}.post-wrap.wide th:nth-child(6){width:3.8em}.post-wrap.wide td[data-label]{white-space:nowrap}}
+</style></head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container">
+<a class="wordmark" href="/">Hadi Mohammadi</a>
+<nav class="site-nav" aria-label="Main"><ul>
+<li><a href="/research/">Research</a></li><li><a href="/publications/">Publications</a></li>
+<li><a href="/software/">Software</a></li><li><a href="/experience/">Experience</a></li><li><a href="/teaching/">Teaching</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li><li><a href="/thesis/">Thesis</a></li><li><a href="/assets/docs/HadiMohammadiCV.pdf">CV</a></li></ul></nav>
+<details class="nav-toggle"><summary>Menu</summary><nav class="site-nav" aria-label="Mobile"><ul>
+<li><a href="/research/">Research</a></li><li><a href="/publications/">Publications</a></li>
+<li><a href="/software/">Software</a></li><li><a href="/experience/">Experience</a></li><li><a href="/teaching/">Teaching</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li><li><a href="/thesis/">Thesis</a></li><li><a href="/assets/docs/HadiMohammadiCV.pdf">CV</a></li></ul></nav></details>
+</div></header>
+<nav class="atlas-nav" aria-label="AI Conferences"><div class="container"><a class="name" href="">AI Conferences</a><a class="map" href="2026/atlas.html">Open the map</a><a href="2026/index.html">NeurIPS vs EMNLP</a><a href="/neurips/2026/">NeurIPS 2026</a><a href="/emnlp/2026/">EMNLP 2026</a><a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data</a></div></nav><main id="main"><section class="hero"><div class="container">
+<span class="kicker">Project</span><h1>AI Conferences</h1>
+<p class="section-lede">Open maps of the papers at the big AI conferences, made the same way each time, so they can be compared.</p>
+</div></section>
+<section class="section"><div class="container">
+<a href="2026/atlas.html"><img src="2026/figures/map_years.png" alt="NeurIPS and EMNLP papers of 2025 and 2026 on one map"
+ class="landing-map"></a>
+<div class="landing-actions"><a class="btn" href="2026/atlas.html">Open the joint map</a>
+<a class="btn btn-ghost" href="2026/">Read the comparison</a></div>
+<div class="prose" style="margin-top:28px">
+<h2>2026</h2>
+<p><a href="2026/"><strong>NeurIPS and EMNLP moved closer in 2026.</strong></a> Both conferences, 2025 and 2026, on one map:
+what brought them together and what still sets them apart.</p>
+<p><a href="/neurips/2026/"><strong>NeurIPS 2026 atlas.</strong></a> All 9,110 papers on one map, with the
+city, day and time of every poster.</p>
+<p><a href="/emnlp/2026/"><strong>EMNLP 2026 atlas.</strong></a> All 5,534 papers on one map, with the room
+and time of every talk and poster.</p>
+</div></div></section></main>
+<footer class="site-footer"><div class="container">
+<p>&copy; 2026 Hadi Mohammadi &middot; Data: NeurIPS paper lists and the ACL Anthology (CC BY 4.0)</p>
+<p><a href="/">mohammadi.cv</a> <span class="nobreak">&middot; <a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data on GitHub</a></span></p>
+</div></footer>
+</body></html>

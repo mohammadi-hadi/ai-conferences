@@ -1,0 +1,125 @@
+"""Page template for the AI conferences pages that matches mohammadi.cv: its fonts, its stylesheet (/assets/css/site.css),
+its header and a footer without personal contact details."""
+
+SITE_ROOT = "https://mohammadi.cv"
+ATLAS_ROOT = "https://mohammadi.cv/ai-conferences/"
+
+FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
+         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+         '<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;'
+         '0,8..60,700;1,8..60,400;1,8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500'
+         '&display=swap" rel="stylesheet">'
+         '<link rel="stylesheet" href="/assets/css/site.css">'
+         '<link rel="icon" href="/assets/img/favicon.png"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">')
+
+# small additions for this project, written with the site's own tokens
+EXTRA_CSS = """
+html,body{overflow-x:hidden}
+.atlas-nav{border-bottom:1px solid var(--rule);background:var(--surface)}
+.atlas-nav .container{display:flex;gap:6px 18px;flex-wrap:wrap;align-items:center;padding-top:10px;padding-bottom:10px;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.02em}
+.atlas-nav a{color:var(--ink-2);text-decoration:none}.atlas-nav a:hover{color:var(--accent)}
+.atlas-nav .name{font-weight:500;color:var(--ink)}
+.atlas-nav a.map{background:var(--accent);color:#fff;padding:4px 10px;border-radius:6px}
+.atlas-nav a.map:hover{background:var(--accent-hover);color:#fff}
+.atlas-hero{margin:8px auto 36px}
+.atlas-hero iframe{width:100%;height:min(78vh,760px);border:1px solid var(--rule);border-radius:10px;background:#fff;display:block;
+  box-shadow:0 2px 18px rgba(30,58,95,.08)}
+.map-frame{position:relative}
+.map-preview{width:100%;height:min(78vh,760px);object-fit:contain;background:#fbfaf7;border:1px solid var(--rule);border-radius:10px;display:block}
+@media (max-width:720px){.map-preview{height:auto}}
+.map-cover{position:absolute;inset:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px}
+.map-cover span{font-family:var(--sans);font-size:.9rem;font-weight:500;background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.map-cover:hover span{background:var(--accent-hover)}
+.atlas-hero .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.post-body figure{margin:32px 0 32px 50%;width:min(1000px,calc(100vw - 32px));transform:translateX(-50%)}
+.post-body figure img{display:block;width:auto;max-width:100%;height:auto;max-height:min(85vh,860px);margin:0 auto;border:1px solid var(--rule);border-radius:8px;background:#fff}
+.post-body figcaption{text-align:center}
+.post-body iframe.chart{width:min(1000px,calc(100vw - 32px))!important;margin-left:50%!important;transform:translateX(-50%)}
+.post-body figcaption{font-size:var(--step--1);color:var(--ink-3);margin-top:6px}
+.post-body iframe.chart{width:100%;border:1px solid var(--rule);border-radius:8px;background:#fff;margin:0 0 28px}
+.post-body table{width:100%;border-collapse:collapse;font-size:var(--step--1);margin:0 0 24px}
+@media (max-width:560px){.post-wrap:not(.wide) table{table-layout:fixed;min-width:0}.post-wrap:not(.wide) th,.post-wrap:not(.wide) td{overflow-wrap:anywhere;padding:6px 4px}}
+.post-body th,.post-body td{border-bottom:1px solid var(--rule);padding:6px 8px;text-align:left;vertical-align:top}
+.post-body .note{font-size:var(--step--1);color:var(--ink-3)}
+.wide{max-width:1080px}
+.atlas-nav a[aria-current]{color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.post-body .btn,.atlas-hero .btn{text-decoration:none}
+.map-preview{padding-bottom:58px;box-sizing:border-box}
+@media (max-width:720px){.map-preview{padding-bottom:0}.map-cover span{display:none}}
+.landing-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.post-body figcaption .tap{display:none}
+@media (max-width:640px){.post-body figcaption .tap{display:inline}}
+.post-body .links{white-space:nowrap}
+.post-body table + h3{margin-top:28px}
+.landing-map{width:100%;height:min(70vh,680px);object-fit:contain;border:1px solid var(--rule);border-radius:10px;background:#fbfaf7;display:block}
+@media (max-width:720px){.landing-map{height:auto}}
+@media (max-width:640px){.post-wrap.wide table,.post-wrap.wide tbody,.post-wrap.wide tr,.post-wrap.wide td{display:block;width:auto;min-width:0}
+.post-wrap.wide thead{display:none}.post-wrap.wide tr{padding:12px 0;border-bottom:1px solid var(--rule)}
+.post-wrap.wide td{border:0;padding:2px 0}.post-wrap.wide td:first-child{font-weight:600}
+.post-wrap.wide td[data-label]{display:inline-block;margin:4px 14px 0 0;font-family:var(--mono);font-size:.78rem;color:var(--ink-3)}
+.post-wrap.wide td[data-label]::before{content:attr(data-label) ": "}}
+/* desktop: the same column widths in every table, numbers on one line */
+@media (min-width:641px){.post-wrap.wide table{table-layout:fixed}.post-wrap.wide th:nth-child(1){width:19%}.post-wrap.wide th:nth-child(3){width:4.5em}.post-wrap.wide th:nth-child(4){width:9.5em}.post-wrap.wide th:nth-child(5){width:7.5em}.post-wrap.wide th:nth-child(6){width:3.8em}.post-wrap.wide td[data-label]{white-space:nowrap}}
+"""
+
+HEADER = """<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container">
+<a class="wordmark" href="/">Hadi Mohammadi</a>
+<nav class="site-nav" aria-label="Main"><ul>
+<li><a href="/research/">Research</a></li><li><a href="/publications/">Publications</a></li>
+<li><a href="/software/">Software</a></li><li><a href="/experience/">Experience</a></li><li><a href="/teaching/">Teaching</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li><li><a href="/thesis/">Thesis</a></li><li><a href="/assets/docs/HadiMohammadiCV.pdf">CV</a></li></ul></nav>
+<details class="nav-toggle"><summary>Menu</summary><nav class="site-nav" aria-label="Mobile"><ul>
+<li><a href="/research/">Research</a></li><li><a href="/publications/">Publications</a></li>
+<li><a href="/software/">Software</a></li><li><a href="/experience/">Experience</a></li><li><a href="/teaching/">Teaching</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li><li><a href="/thesis/">Thesis</a></li><li><a href="/assets/docs/HadiMohammadiCV.pdf">CV</a></li></ul></nav></details>
+</div></header>"""
+
+
+def atlas_nav(prefix="", current=""):
+    """Project menu shown under the site header. prefix='' inside /ai-conferences/2026/, '2026/' on the landing page."""
+    nav = (f'<nav class="atlas-nav" aria-label="AI Conferences"><div class="container">'
+            f'<a class="name" href="{"../" if not prefix else ""}">AI Conferences</a>'
+            f'<a class="map" href="{prefix}atlas.html">Open the map</a>'
+            f'<a href="{prefix}index.html">NeurIPS vs EMNLP</a>'
+            f'<a href="/neurips/2026/">NeurIPS 2026</a><a href="/emnlp/2026/">EMNLP 2026</a>'
+            f'<a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data</a></div></nav>')
+    # the page you are on is marked, like the Blog item in the site menu
+    return nav.replace(f'href="{prefix}{current}">', f'href="{prefix}{current}" aria-current="page">', 1) if current else nav
+
+
+FOOTER = """<footer class="site-footer"><div class="container">
+<p>&copy; 2026 Hadi Mohammadi &middot; Data: NeurIPS paper lists and the ACL Anthology (CC BY 4.0)</p>
+<p><a href="/">mohammadi.cv</a> <span class="nobreak">&middot; <a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data on GitHub</a></span></p>
+</div></footer>"""
+
+
+def page(title, description, url, body, image=None, extra_head="", kind="article"):
+    img = image or f"{ATLAS_ROOT}2026/figures/map_years.png"
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light">
+<title>{title} — Hadi Mohammadi</title><meta name="description" content="{description}">
+<link rel="canonical" href="{url}"><meta name="author" content="Hadi Mohammadi">
+<meta property="og:title" content="{title}"><meta property="og:description" content="{description}">
+<meta property="og:url" content="{url}"><meta property="og:type" content="{kind}"><meta property="og:site_name" content="Hadi Mohammadi">
+<meta property="og:image" content="{img}"><meta name="twitter:card" content="summary_large_image">
+{FONTS}<style>{EXTRA_CSS}</style>{extra_head}</head><body>
+{HEADER}
+{body}
+{FOOTER}
+</body></html>"""
+
+
+TREEMAP_CSS = """<style>
+#tm{height:min(80vh,820px)!important;min-height:520px;margin:4px 0 40px}
+.scale{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:var(--step--1);color:var(--ink-3);margin:14px 0 4px}
+.scale i{display:block;width:140px;height:10px;border-radius:5px;background:linear-gradient(90deg,#2166ac,#f7f7f7,#b2182b)}
+.areas{list-style:none;padding:0;margin:8px 0 0;columns:2 340px;column-gap:28px}
+.areas li{break-inside:avoid;border-bottom:1px solid var(--rule)}
+.areas button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:10px;align-items:baseline;width:100%;padding:8px 2px}
+.areas button:hover .n,.areas button:focus-visible .n{color:var(--accent);text-decoration:underline}
+.areas .d{flex:none;width:11px;height:11px;border-radius:3px;border:1px solid rgba(0,0,0,.28);transform:translateY(1px)}
+.areas .n{flex:1}.areas .v{font-family:var(--mono);font-size:.76rem;color:var(--ink-3);white-space:nowrap}
+</style>"""
+

@@ -1,0 +1,105 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light">
+<title>NeurIPS and EMNLP moved closer in 2026 — Hadi Mohammadi</title><meta name="description" content="NeurIPS and EMNLP papers of 2025 and 2026 on one map, and how much closer the two conferences got.">
+<link rel="canonical" href="https://mohammadi.cv/ai-conferences/2026/"><meta name="author" content="Hadi Mohammadi">
+<meta property="og:title" content="NeurIPS and EMNLP moved closer in 2026"><meta property="og:description" content="NeurIPS and EMNLP papers of 2025 and 2026 on one map, and how much closer the two conferences got.">
+<meta property="og:url" content="https://mohammadi.cv/ai-conferences/2026/"><meta property="og:type" content="article"><meta property="og:site_name" content="Hadi Mohammadi">
+<meta property="og:image" content="https://mohammadi.cv/ai-conferences/2026/figures/map_years.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/css/site.css"><link rel="icon" href="/assets/img/favicon.png"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><style>
+html,body{overflow-x:hidden}
+.atlas-nav{border-bottom:1px solid var(--rule);background:var(--surface)}
+.atlas-nav .container{display:flex;gap:6px 18px;flex-wrap:wrap;align-items:center;padding-top:10px;padding-bottom:10px;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.02em}
+.atlas-nav a{color:var(--ink-2);text-decoration:none}.atlas-nav a:hover{color:var(--accent)}
+.atlas-nav .name{font-weight:500;color:var(--ink)}
+.atlas-nav a.map{background:var(--accent);color:#fff;padding:4px 10px;border-radius:6px}
+.atlas-nav a.map:hover{background:var(--accent-hover);color:#fff}
+.atlas-hero{margin:8px auto 36px}
+.atlas-hero iframe{width:100%;height:min(78vh,760px);border:1px solid var(--rule);border-radius:10px;background:#fff;display:block;
+  box-shadow:0 2px 18px rgba(30,58,95,.08)}
+.map-frame{position:relative}
+.map-preview{width:100%;height:min(78vh,760px);object-fit:contain;background:#fbfaf7;border:1px solid var(--rule);border-radius:10px;display:block}
+@media (max-width:720px){.map-preview{height:auto}}
+.map-cover{position:absolute;inset:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px}
+.map-cover span{font-family:var(--sans);font-size:.9rem;font-weight:500;background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.map-cover:hover span{background:var(--accent-hover)}
+.atlas-hero .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.post-body figure{margin:32px 0 32px 50%;width:min(1000px,calc(100vw - 32px));transform:translateX(-50%)}
+.post-body figure img{display:block;width:auto;max-width:100%;height:auto;max-height:min(85vh,860px);margin:0 auto;border:1px solid var(--rule);border-radius:8px;background:#fff}
+.post-body figcaption{text-align:center}
+.post-body iframe.chart{width:min(1000px,calc(100vw - 32px))!important;margin-left:50%!important;transform:translateX(-50%)}
+.post-body figcaption{font-size:var(--step--1);color:var(--ink-3);margin-top:6px}
+.post-body iframe.chart{width:100%;border:1px solid var(--rule);border-radius:8px;background:#fff;margin:0 0 28px}
+.post-body table{width:100%;border-collapse:collapse;font-size:var(--step--1);margin:0 0 24px}
+@media (max-width:560px){.post-wrap:not(.wide) table{table-layout:fixed;min-width:0}.post-wrap:not(.wide) th,.post-wrap:not(.wide) td{overflow-wrap:anywhere;padding:6px 4px}}
+.post-body th,.post-body td{border-bottom:1px solid var(--rule);padding:6px 8px;text-align:left;vertical-align:top}
+.post-body .note{font-size:var(--step--1);color:var(--ink-3)}
+.wide{max-width:1080px}
+.atlas-nav a[aria-current]{color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.post-body .btn,.atlas-hero .btn{text-decoration:none}
+.map-preview{padding-bottom:58px;box-sizing:border-box}
+@media (max-width:720px){.map-preview{padding-bottom:0}.map-cover span{display:none}}
+.landing-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.post-body figcaption .tap{display:none}
+@media (max-width:640px){.post-body figcaption .tap{display:inline}}
+.post-body .links{white-space:nowrap}
+.post-body table + h3{margin-top:28px}
+.landing-map{width:100%;height:min(70vh,680px);object-fit:contain;border:1px solid var(--rule);border-radius:10px;background:#fbfaf7;display:block}
+@media (max-width:720px){.landing-map{height:auto}}
+@media (max-width:640px){.post-wrap.wide table,.post-wrap.wide tbody,.post-wrap.wide tr,.post-wrap.wide td{display:block;width:auto;min-width:0}
+.post-wrap.wide thead{display:none}.post-wrap.wide tr{padding:12px 0;border-bottom:1px solid var(--rule)}
+.post-wrap.wide td{border:0;padding:2px 0}.post-wrap.wide td:first-child{font-weight:600}
+.post-wrap.wide td[data-label]{display:inline-block;margin:4px 14px 0 0;font-family:var(--mono);font-size:.78rem;color:var(--ink-3)}
+.post-wrap.wide td[data-label]::before{content:attr(data-label) ": "}}
+/* desktop: the same column widths in every table, numbers on one line */
+@media (min-width:641px){.post-wrap.wide table{table-layout:fixed}.post-wrap.wide th:nth-child(1){width:19%}.post-wrap.wide th:nth-child(3){width:4.5em}.post-wrap.wide th:nth-child(4){width:9.5em}.post-wrap.wide th:nth-child(5){width:7.5em}.post-wrap.wide th:nth-child(6){width:3.8em}.post-wrap.wide td[data-label]{white-space:nowrap}}
+</style></head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container">
+<a class="wordmark" href="/">Hadi Mohammadi</a>
+<nav class="site-nav" aria-label="Main"><ul>
+<li><a href="/research/">Research</a></li><li><a href="/publications/">Publications</a></li>
+<li><a href="/software/">Software</a></li><li><a href="/experience/">Experience</a></li><li><a href="/teaching/">Teaching</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li><li><a href="/thesis/">Thesis</a></li><li><a href="/assets/docs/HadiMohammadiCV.pdf">CV</a></li></ul></nav>
+<details class="nav-toggle"><summary>Menu</summary><nav class="site-nav" aria-label="Mobile"><ul>
+<li><a href="/research/">Research</a></li><li><a href="/publications/">Publications</a></li>
+<li><a href="/software/">Software</a></li><li><a href="/experience/">Experience</a></li><li><a href="/teaching/">Teaching</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li><li><a href="/thesis/">Thesis</a></li><li><a href="/assets/docs/HadiMohammadiCV.pdf">CV</a></li></ul></nav></details>
+</div></header>
+<nav class="atlas-nav" aria-label="AI Conferences"><div class="container"><a class="name" href="../">AI Conferences</a><a class="map" href="atlas.html">Open the map</a><a href="index.html" aria-current="page">NeurIPS vs EMNLP</a><a href="/neurips/2026/">NeurIPS 2026</a><a href="/emnlp/2026/">EMNLP 2026</a><a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data</a></div></nav><main id="main"><article class="post">
+<header class="post-head"><div class="post-wrap">
+<p class="post-crumbs"><a href="/blog/">Blog</a><span class="sep">/</span><a href="../">AI Conferences</a></p><h1>NeurIPS and EMNLP moved closer in 2026</h1><p class="post-dek">NeurIPS and EMNLP papers of 2025 and 2026 on one map, and how much closer the two conferences got.</p>
+<p class="post-byline"><span>3 min read · 29 October 2026</span></p></div></header>
+<div class="post-body"><div class="post-wrap"><!-- dek: NeurIPS and EMNLP papers of 2025 and 2026 on one map, and how much closer the two conferences got. -->
+
+<!-- date: 29 October 2026 -->
+
+
+<p>NeurIPS is one of the largest machine learning conferences. EMNLP is one of the main conferences in natural language processing. I mapped both this year with the same model and the same method, so I could put all 23,984 papers from 2025 and 2026 on one map and ask a simple question. Are the two turning into one conference?</p>
+<p>They moved closer. They are still far from the same.</p>
+</div><section class="container atlas-hero" aria-label="map of both conferences"><div class="map-frame"><img class="map-preview" src="figures/map_years.png" alt="NeurIPS and EMNLP papers of 2025 and 2026 on one map"><button class="map-cover" type="button" onclick="openMap(this)"><span>Explore the map</span></button></div><div class="actions"><a class="btn" href="atlas.html">Open the map full screen</a></div></section><script>function openMap(b){if(window.innerWidth<900){location.href="atlas.html";return;}b.parentNode.innerHTML='<iframe src="atlas.html" title="NeurIPS and EMNLP on one map"></iframe>';}</script><div class="post-wrap">
+<h2 id="closer-than-a-year-ago">Closer than a year ago</h2>
+<p>For each paper I looked up the paper most similar to it. In 2025, 23% of NeurIPS papers had their closest paper at EMNLP. In 2026 it was 29%. The other way round, EMNLP papers whose closest paper is at NeurIPS went from 22% to 25%.</p>
+<figure><a href="figures/closeness.png"><img src="figures/closeness.png" alt="Share of papers whose closest paper is at the other conference, 2025 and 2026" width="2017" height="816" loading="lazy"></a><figcaption>Share of papers whose closest paper is at the other conference, 2025 and 2026<span class="tap"> · Tap to enlarge.</span></figcaption></figure>
+<p>NeurIPS is much bigger than EMNLP, and both grew, so every number here compares 3,000 papers from each conference, drawn at random 50 times. A simple classifier that guesses the conference from a paper's title and abstract also finds the task harder now. Its score (AUC) fell from 0.93 to 0.89.</p>
+<h2 id="what-brought-them-together">What brought them together</h2>
+<p>I sorted all the papers into 40 shared topics and measured the common ground: for each topic, the smaller of the two conferences' shares, added up. It went from 40% to 45%.</p>
+<figure><a href="figures/topics_together.png"><img src="figures/topics_together.png" alt="Topics where the common ground grew most, share of each conference&#39;s papers in 2025 and 2026" width="1802" height="1071" loading="lazy"></a><figcaption>Topics where the common ground grew most, share of each conference&#39;s papers in 2025 and 2026<span class="tap"> · Tap to enlarge.</span></figcaption></figure>
+<p>Most of that gain comes from agents and from reinforcement learning for language models. LLM agents went from 2.0% to 4.6% of NeurIPS papers and from 4.2% to 9.0% of EMNLP papers. RL for LLM reasoning went from 1.3% to 2.7% at NeurIPS and from 0.9% to 3.2% at EMNLP. Agent memory, close to nothing at either conference in 2025, now has 0.8% of NeurIPS and 2.2% of EMNLP.</p>
+<p>Neither conference moved towards where the other one was. NeurIPS 2026 is not closer to EMNLP 2025 than NeurIPS 2025 was, and the same holds the other way. Both moved to the same new topics in the same year, and that is why they overlap more.</p>
+<h2 id="what-still-sets-them-apart">What still sets them apart</h2>
+<figure><a href="figures/still_apart.png"><img src="figures/still_apart.png" alt="The five topics most specific to each conference in 2026" width="1922" height="1130" loading="lazy"></a><figcaption>The five topics most specific to each conference in 2026<span class="tap"> · Tap to enlarge.</span></figcaption></figure>
+<p>Most of each conference is still its own. Diffusion and flow models, bandits, optimisation theory and neural PDE solvers are almost only at NeurIPS. Multilingual NLP and translation, retrieval-augmented generation and information extraction are almost only at EMNLP, though all three now make up a smaller share of EMNLP than last year.</p>
+<p>The people did not converge much either. Matching author names, about a quarter of EMNLP authors also had a NeurIPS paper that year, in 2025 and in 2026. NeurIPS grew by 56%, which alone makes a shared name more likely. When I shrink 2026 to the size of 2025, the share does not go up.</p>
+<h2 id="how-i-made-it">How I made it</h2>
+<p>The papers come from the public NeurIPS paper lists (main, datasets and evaluations, position and journal tracks) and from the ACL Anthology for EMNLP (main, Findings, industry and demo tracks). That is 5,856 and 9,110 NeurIPS papers and 3,484 and 5,534 EMNLP papers. An open model, Qwen3‑Embedding‑0.6B, turned each title and abstract into numbers, the same way in both atlases.</p>
+<p>The result held every way I checked it. I tried 30 and 60 topics instead of 40, 10 and 50 neighbours instead of 20, and only the main track of EMNLP. The common ground rose by 5 to 6 points each time, and agent and RL topics made up 76% to 92% of the rise. Author names are matched loosely (first and last name), so that part is rough.</p>
+<h2 id="explore">Explore</h2>
+<p><a href="atlas.html">The joint map</a> · <a href="https://mohammadi.cv/neurips/2026/">NeurIPS 2026 atlas</a> · <a href="https://mohammadi.cv/emnlp/2026/">EMNLP 2026 atlas</a> · <a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data</a></p>
+<p>Hadi Mohammadi · <a href="https://mohammadi.cv">mohammadi.cv</a></p>
+</div></div></article></main>
+<footer class="site-footer"><div class="container">
+<p>&copy; 2026 Hadi Mohammadi &middot; Data: NeurIPS paper lists and the ACL Anthology (CC BY 4.0)</p>
+<p><a href="/">mohammadi.cv</a> <span class="nobreak">&middot; <a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data on GitHub</a></span></p>
+</div></footer>
+</body></html>

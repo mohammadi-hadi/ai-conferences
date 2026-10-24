@@ -36,8 +36,6 @@ Most of each conference is still its own. Diffusion and flow models, bandits, op
 
 The people did not converge much either. Matching author names, about a quarter of EMNLP authors also had a NeurIPS paper that year, in 2025 and in 2026. NeurIPS grew by 56%, which alone makes a shared name more likely. When I shrink 2026 to the size of 2025, the share does not go up.
 
-![The joint map in 2025 and 2026, NeurIPS papers in blue and EMNLP papers in orange](../outputs/figures/map_years.png)
-
 ## How I made it
 
 The papers come from the public NeurIPS paper lists (main, datasets and evaluations, position and journal tracks) and from the ACL Anthology for EMNLP (main, Findings, industry and demo tracks). That is 5,856 and 9,110 NeurIPS papers and 3,484 and 5,534 EMNLP papers. An open model, Qwen3‑Embedding‑0.6B, turned each title and abstract into numbers, the same way in both atlases.
