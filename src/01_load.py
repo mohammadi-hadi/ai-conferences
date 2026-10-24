@@ -21,6 +21,7 @@ def load(src, conf, author_sep, title_col):
         "abstract": df["abstract"].fillna(""),
         "authors": df["authors"].fillna("").map(lambda s: [a.strip() for a in s.split(author_sep) if a.strip()]),
         "track": df["track"] if "track" in df else "Main",
+        "url": df["anthology"].fillna(df["pdf"]) if "anthology" in df else df["url"],
     })
     return out, emb[keep], model
 
@@ -35,7 +36,9 @@ emb /= norms[:, None]
 
 df.to_parquet(P / "papers.parquet")
 np.save(P / "embeddings.npy", emb)
-counts = df.groupby(["conf", "year"]).size().unstack().to_dict()
-json.dump({"model": mn, "counts": {c: {str(y): int(v) for y, v in d.items()} for c, d in counts.items()}},
+counts = {}
+for (c, y), v in df.groupby(["conf", "year"]).size().items():
+    counts.setdefault(c, {})[str(y)] = int(v)
+json.dump({"model": mn, "counts": counts},
           open(P / "load.json", "w"), indent=1)
 print(mn, df.groupby(["conf", "year"]).size().to_dict())
