@@ -25,8 +25,11 @@ extra = pd.DataFrame({
     "abstract": df["abstract"].str.slice(0, 380) + "…",
 })
 hover = (title + " — " + df["conf"] + " " + df["year"].astype(str)).to_numpy()
-cmap_raw = [df["conf"].to_numpy(), df["year"].astype(str).to_numpy(), area]
+mix = pd.read_parquet(P / "neighbour_mix.parquet")["neighbour_mix"].to_numpy()  # from 12_overlap_areas.py
+cmap_raw = [mix, df["conf"].to_numpy(), df["year"].astype(str).to_numpy(), area]
 cmap_meta = [
+    {"field": "mix", "description": "How shared: dark = its nearest papers are from its own conference, bright = from both",
+     "cmap": "magma", "kind": "continuous"},
     {"field": "conference", "description": "Conference", "kind": "categorical",
      "color_mapping": {"NeurIPS": "#3b5bdb", "EMNLP": "#d9480f"}},
     {"field": "year", "description": "Year", "kind": "categorical", "color_mapping": {"2025": "#adb5bd", "2026": "#1e3a5f"}},
@@ -80,7 +83,7 @@ plot = datamapplot.create_interactive_plot(
     on_click="showLinks(`{url}`, `{safe_title}`, `{conf}`)",
     title="NeurIPS and EMNLP, 2025 and 2026, on one map",
     sub_title=f"Each dot is one of {len(df):,} papers; similar papers sit close together. Blue is NeurIPS, orange is EMNLP, "
-              "lighter dots are 2025. The menu at the bottom left colours the map by year or broad area.",
+              "lighter dots are 2025. The menu at the bottom left colours the map by how shared each spot is, by year or by area.",
     enable_search=True,
     enable_topic_tree=True,
     colormap_rawdata=cmap_raw,
