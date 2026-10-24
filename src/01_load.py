@@ -20,7 +20,7 @@ def load(src, conf, author_sep, title_col):
         "title": df[title_col],
         "abstract": df["abstract"].fillna(""),
         "authors": df["authors"].fillna("").map(lambda s: [a.strip() for a in s.split(author_sep) if a.strip()]),
-        "track": df["track"] if "track" in df else "Main",
+        "track": df["track"] if "track" in df else "All",  # the NeurIPS lists do not split tracks
         "url": df["anthology"].fillna(df["pdf"]) if "anthology" in df else df["url"],
     })
     return out, emb[keep], model

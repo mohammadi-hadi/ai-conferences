@@ -2,7 +2,9 @@
 
 - topic overlap with 30 and 60 joint topics instead of 40;
 - mixing index with 10 and 50 neighbours instead of 20 (20 draws each);
-- the share of the topic-overlap gain that comes from agent and RL topics, for each topic count.
+- the share of the topic-overlap gain that comes from agent and RL topics, for each topic count (a share of the net
+  gain: other topics lost common ground, so the gross gains of all growing topics add up to more);
+- common ground with only EMNLP's main track.
 """
 import json
 import numpy as np
@@ -30,6 +32,14 @@ for K in (30, 40, 60):
         "gain_from_agent_rl_topics": round(float(gain[agentish.reindex(gain.index, fill_value=False)].sum()), 4),
         "agent_rl_topics": int(agentish.sum())}
     print(K, out["topic_overlap"][str(K)], flush=True)
+
+# common ground with EMNLP's main track only, on the main 40 topics
+t = pd.read_parquet(P / "topics.parquet")["topic"]
+m = df.assign(t=t)[~((df["conf"] == "EMNLP") & (df["track"] != "Main"))]
+sh = m.groupby(["conf", "year"])["t"].value_counts(normalize=True).unstack(fill_value=0).T
+out["topic_overlap_emnlp_main_only"] = {str(y): round(float(np.minimum(sh[("NeurIPS", y)], sh[("EMNLP", y)]).sum()), 4)
+                                        for y in (2025, 2026)}
+print("main only", out["topic_overlap_emnlp_main_only"], flush=True)
 
 def mixing(year, k, rng, N=3000):
     a = rng.choice(np.flatnonzero(((df.conf == "NeurIPS") & (df.year == year)).to_numpy()), N, replace=False)

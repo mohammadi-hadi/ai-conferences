@@ -9,6 +9,8 @@ bigger conference or a bigger year cannot change the numbers by itself. Fifty dr
   always and 0.5 means a coin flip;
 - nn_sim: the median, over papers, of the cosine similarity to the closest paper of the other conference;
 - centroid: cosine similarity of the two conferences' average vectors.
+nn_sim and centroid are absolute and rise whenever every set gets more uniform; mixing and auc are the headline ones.
+The 95% ranges show the spread over draws, not the full uncertainty (EMNLP 2025 draws 3,000 of its 3,484 papers).
 """
 import json, sys
 import numpy as np
