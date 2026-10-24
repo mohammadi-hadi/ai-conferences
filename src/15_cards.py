@@ -1,5 +1,5 @@
 """Portrait images (1080 x 1350) for the LinkedIn post, in outputs/cards/:
-1_overlap.png  the hexagon map, 2025 above 2026, with the headline numbers
+1_overlap.png  the hexagon map, 2025 and 2026 side by side, with the headline numbers
 2_closer.png, 3_topics.png, 4_apart.png  made by 08_figures.py portrait
 """
 import json

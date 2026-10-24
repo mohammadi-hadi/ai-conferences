@@ -33,11 +33,11 @@ def finish(fig, ax, title, sub, name, src_y=-0.04):
     fig.text(0.01, src_y, SOURCE, fontsize=8, color=GREY, transform=fig.transFigure, ha="left", va="top")
     if PORTRAIT:
         (OUT / "cards").mkdir(exist_ok=True)
-        left = {"closeness.png": .25, "topics_together.png": .5, "still_apart.png": .58}[name]
+        left = {"closeness.png": .26, "topics_together.png": .52, "still_apart.png": .62}[name]
         fig.subplots_adjust(left=left, right=.94, top=.8, bottom=.17)
         for t in fig.texts:  # the source line goes inside the card
             if t.get_text() == SOURCE:
-                t.set_transform(fig.transFigure); t.set_position((.03, .03)); t.set_fontsize(6.5); t.set_va("bottom")
+                t.set_transform(fig.transFigure); t.set_position((.03, .025)); t.set_fontsize(6.6); t.set_color(MUTED); t.set_va("bottom")
         for t in fig.texts:  # title and subtitle start at the left edge of the card
             if t.get_text() != SOURCE:
                 t.set_transform(fig.transFigure); t.set_x(.04)
