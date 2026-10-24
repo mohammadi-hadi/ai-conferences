@@ -1,0 +1,23 @@
+{
+ "2025": {
+  "Mostly NeurIPS": 0.4099,
+  "Shared": 0.2504,
+  "Mostly EMNLP": 0.3097,
+  "papers_in_small_cells": 0.03,
+  "NeurIPS_papers_in_shared": 0.2398,
+  "EMNLP_papers_in_shared": 0.2684
+ },
+ "2026": {
+  "Mostly NeurIPS": 0.3724,
+  "Shared": 0.3204,
+  "Mostly EMNLP": 0.2911,
+  "papers_in_small_cells": 0.016,
+  "NeurIPS_papers_in_shared": 0.2926,
+  "EMNLP_papers_in_shared": 0.3661
+ },
+ "2026_at_2025_size_shared": {
+  "mean": 0.3098,
+  "lo": 0.2919,
+  "hi": 0.3247
+ }
+}
