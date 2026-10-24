@@ -90,7 +90,7 @@ def atlas_nav(prefix="", current=""):
 
 
 FOOTER = """<footer class="site-footer"><div class="container">
-<p>&copy; 2026 Hadi Mohammadi &middot; Data: NeurIPS paper lists and the ACL Anthology (CC BY 4.0)</p>
+<p>&copy; 2026 Hadi Mohammadi &middot; Data: NeurIPS paper lists; ACL Anthology (CC BY 4.0)</p>
 <p><a href="/">mohammadi.cv</a> <span class="nobreak">&middot; <a href="https://github.com/mohammadi-hadi/ai-conferences">Code and data on GitHub</a></span></p>
 </div></footer>"""
 

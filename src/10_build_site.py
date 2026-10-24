@@ -30,7 +30,8 @@ def img_size(src):
 
 
 def md_to_html(md_path):
-    body = subprocess.run(["pandoc", str(md_path), "-f", "gfm", "-t", "html5", "--wrap=none"], capture_output=True,
+    md = re.sub(r"<!--\s*(dek|date):.*?-->\s*", "", md_path.read_text())
+    body = subprocess.run(["pandoc", "-f", "gfm", "-t", "html5", "--wrap=none"], input=md, capture_output=True,
                           text=True, check=True).stdout
     body = body.replace("../outputs/figures/", "figures/").replace(SITE, "")
     title = re.search(r"<h1[^>]*>(.*?)</h1>", body, re.S)
@@ -61,7 +62,7 @@ root = DOCS.parent
 counts = json.load(open(ROOT / "data/processed/load.json"))["counts"]
 LANDING = f"""{atlas_nav("2026/")}<main id="main"><section class="hero"><div class="container">
 <span class="kicker">Project</span><h1>AI Conferences</h1>
-<p class="section-lede">Open maps of the papers at the big AI conferences, made the same way each time, so they can be compared.</p>
+<p class="section-lede">Open maps of NeurIPS and EMNLP papers, made the same way each time, so they can be compared.</p>
 </div></section>
 <section class="section"><div class="container">
 <a href="2026/atlas.html"><img src="2026/figures/map_years.png" alt="NeurIPS and EMNLP papers of 2025 and 2026 on one map"
@@ -77,7 +78,7 @@ city, day and time of every poster.</p>
 <p><a href="/emnlp/2026/"><strong>EMNLP 2026 atlas.</strong></a> All {counts["EMNLP"]["2026"]:,} papers on one map, with the room
 and time of every talk and poster.</p>
 </div></div></section></main>"""
-(root / "index.html").write_text(page("AI Conferences", "Open maps of the papers at the big AI conferences, made the same way each time.",
+(root / "index.html").write_text(page("AI Conferences", "Open maps of NeurIPS and EMNLP papers, made the same way each time.",
                                       "https://mohammadi.cv/ai-conferences/", LANDING,
                                       image=f"{SITE}figures/map_years.png", kind="website"))
 print("wrote", root / "index.html")

@@ -12,11 +12,11 @@ They moved closer. They are still far from the same.
 
 ## Closer than a year ago
 
-For each paper I looked up the paper most similar to it. In 2025, 23% of NeurIPS papers had their closest paper at EMNLP. In 2026 it was 29%. The other way round, EMNLP papers whose closest paper is at NeurIPS went from 22% to 25%.
+For each paper I looked up the paper most similar to it. In 2025, 23% of NeurIPS papers had their closest paper at EMNLP. In 2026 it was 29%. The other way round, EMNLP papers whose closest paper is at NeurIPS rose a little, from 22% to 25%.
 
 ![Share of papers whose closest paper is at the other conference, 2025 and 2026](../outputs/figures/closeness.png)
 
-NeurIPS is much bigger than EMNLP, and both grew, so every number here compares 3,000 papers from each conference, drawn at random 50 times. A simple classifier that guesses the conference from a paper's title and abstract also finds the task harder now. Its score (AUC) fell from 0.93 to 0.89.
+NeurIPS is much bigger than EMNLP, and both grew, so these shares compare 3,000 papers from each conference, drawn at random 50 times. A simple classifier that guesses the conference from the vector of a paper's title and abstract also finds the task harder now. Its score (AUC, 20 draws) fell from 0.93 to 0.89.
 
 ## What brought them together
 
@@ -24,23 +24,25 @@ I sorted all the papers into 40 shared topics and measured the common ground: fo
 
 ![Topics where the common ground grew most, share of each conference's papers in 2025 and 2026](../outputs/figures/topics_together.png)
 
-Most of that gain comes from agents and from reinforcement learning for language models. LLM agents went from 2.0% to 4.6% of NeurIPS papers and from 4.2% to 9.0% of EMNLP papers. RL for LLM reasoning went from 1.3% to 2.7% at NeurIPS and from 0.9% to 3.2% at EMNLP. Agent memory, close to nothing at either conference in 2025, now has 0.8% of NeurIPS and 2.2% of EMNLP.
+The biggest gains came from agents and from reinforcement learning for language models. They make up about half of all the topic gains, and nearly all of the net rise once shrinking topics such as chain-of-thought reasoning are subtracted. LLM agents went from 2.0% to 4.6% of NeurIPS papers and from 4.2% to 9.0% of EMNLP papers. RL for LLM reasoning went from 1.3% to 2.7% at NeurIPS and from 0.9% to 3.2% at EMNLP. Agent memory, close to nothing at either conference in 2025, now has 0.8% of NeurIPS and 2.2% of EMNLP.
 
-Neither conference moved towards where the other one was. NeurIPS 2026 is not closer to EMNLP 2025 than NeurIPS 2025 was, and the same holds the other way. Both moved to the same new topics in the same year, and that is why they overlap more.
+Most of the gain is both conferences moving to the same new topics in the same year. NeurIPS also moved a little towards EMNLP's 2025 topics: its common ground with EMNLP 2025 went from 40% to 42%. EMNLP did not move towards NeurIPS 2025.
 
 ## What still sets them apart
 
 ![The five topics most specific to each conference in 2026](../outputs/figures/still_apart.png)
 
-Most of each conference is still its own. Diffusion and flow models, bandits, optimisation theory and neural PDE solvers are almost only at NeurIPS. Multilingual NLP and translation, retrieval-augmented generation and information extraction are almost only at EMNLP, though all three now make up a smaller share of EMNLP than last year.
+Most of each conference is still its own. Diffusion and flow models, bandits, optimisation theory and neural PDE solvers are almost only at NeurIPS. Multilingual NLP and translation, retrieval-augmented generation and information extraction are mostly at EMNLP, though multilingual NLP and information extraction now make up a smaller share of EMNLP than last year.
 
-The people did not converge much either. Matching author names, about a quarter of EMNLP authors also had a NeurIPS paper that year, in 2025 and in 2026. NeurIPS grew by 56%, which alone makes a shared name more likely. When I shrink 2026 to the size of 2025, the share does not go up.
+The people did not converge much either. Matching author names, 25% of EMNLP authors also had a NeurIPS paper in 2025 and 28% in 2026. Both conferences grew by more than half (NeurIPS 56%, EMNLP 59%), which alone makes a shared name more likely. When I shrink 2026 to the size of 2025, the share of authors at both does not go up (24%).
 
 ## How I made it
 
 The papers come from the public NeurIPS paper lists (main, datasets and evaluations, position and journal tracks) and from the ACL Anthology for EMNLP (main, Findings, industry and demo tracks). That is 5,856 and 9,110 NeurIPS papers and 3,484 and 5,534 EMNLP papers. An open model, Qwen3‑Embedding‑0.6B, turned each title and abstract into numbers, the same way in both atlases.
 
-The result held every way I checked it. I tried 30 and 60 topics instead of 40, 10 and 50 neighbours instead of 20, and only the main track of EMNLP. The common ground rose by 5 to 6 points each time, and agent and RL topics made up 76% to 92% of the rise. Author names are matched loosely (first and last name), so that part is rough.
+The 2026 papers are pre-release versions: EMNLP from the Anthology before its official release (read on 21 October) and NeurIPS from the conference's paper list, where many abstracts still have anonymised links.
+
+The result held every way I checked it. With 30 or 60 topics instead of 40, or with only EMNLP's main track, the common ground rose by 5 to 6 points, and agent and RL topics made up 76% to 92% of the net rise. Abstracts also changed style between the two years at both conferences (far fewer "novel" and "enhance"), so I checked that this is not what brings them together. On titles alone, a classifier's score still falls (0.86 to 0.82). With the average 2025 to 2026 shift taken out of every vector, the closest-paper shares still rise (23% to 29% and 21% to 25%) and the common ground still grows (39% to 46%). Author names are matched loosely (first and last name), so that part is rough.
 
 ## Explore
 

@@ -8,10 +8,10 @@ in both years on one map and measures it.
 ## Main results
 
 - In 2025, 23% of NeurIPS papers had their closest paper at EMNLP. In 2026 it is 29%. For EMNLP papers with their
-  closest paper at NeurIPS, it went from 22% to 25%. All comparisons use equal-size samples (3,000 papers per
-  conference, 50 draws).
-- The common ground across 40 shared topics went from 40% to 45%. Agent and RL topics make up most of the rise.
-- Neither conference moved towards where the other one was in 2025. Both moved to the same new topics.
+  closest paper at NeurIPS, it went from 22% to 25%. The closest-paper and classifier comparisons use equal-size
+  samples (3,000 papers per conference, 50 draws; 20 for the classifier).
+- The common ground across 40 shared topics went from 40% to 45%. Agent and RL topics gave the biggest gains.
+- Most of the gain is both conferences moving to the same new topics; NeurIPS also moved a little towards EMNLP's 2025 topics.
 - At equal conference sizes, the share of authors with a paper at both did not go up.
 
 ## Data
@@ -29,7 +29,11 @@ model (Qwen3-Embedding-0.6B):
 
 ## Steps
 
-Run from `src/` after both atlas pipelines have produced `data/processed/papers.parquet` and `embeddings.npy`.
+Clone the two atlas repos next to this one as `NeurIPS2026_Analysis/` and `EMNLP2026_Analysis/`
+(`git clone https://github.com/mohammadi-hadi/neurips NeurIPS2026_Analysis`, the same for `emnlp`), run their
+pipelines, then run the scripts below from `src/` with the same Python environment. `01_load.py` writes this repo's
+`data/processed/papers.parquet` and `embeddings.npy`. The NeurIPS lists do not split tracks, so NeurIPS papers have
+track `All`.
 
 | Script | What it does |
 |---|---|
@@ -39,7 +43,8 @@ Run from `src/` after both atlas pipelines have produced `data/processed/papers.
 | `04_topics.py` | 40 joint topics, shares per conference and year, common ground |
 | `05_authors.py` | author overlap, also at equal conference sizes |
 | `06_umap.py` | 2D layout of all papers |
-| `07_robustness.py` | 30 and 60 topics, 10 and 50 neighbours |
+| `07_robustness.py` | 30 and 60 topics, 10 and 50 neighbours, EMNLP main track only |
+| `11_style_checks.py` | titles only, the 2025 to 2026 shift taken out, common ground across years |
 | `08_figures.py` | story figures |
 | `09_map.py` | interactive map |
 | `10_build_site.py` | story page and hub page in `docs/` |
@@ -48,6 +53,6 @@ Topic names are in `data/labels/topic_names.json`. Every number in the story is 
 
 ## Licence
 
-Code: MIT. Paper metadata: NeurIPS paper lists and the ACL Anthology (CC BY 4.0).
+Code: MIT. Paper metadata: NeurIPS paper lists; ACL Anthology (CC BY 4.0).
 
 Hadi Mohammadi · https://mohammadi.cv
